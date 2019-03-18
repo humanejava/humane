@@ -217,10 +217,12 @@ We end up with following simple principal differences from (previously establish
 
 <table>
 <thead><tr valign="top">
+  <th>Style</th>
   <th>'{' on the same line</th>
   <th>'{' on new line</th>
   <th>(One Possible) Humane</th>
-</tr></thead><tbody><tr valign="top"><td>
+</tr></thead><tbody><tr valign="top">
+<th>Standard</th><td>
 <pre lang="java">
 if (foo.equalsIgnoreCase("foo") &&
         bar.equalsIgnoreCase("bar")) {
@@ -235,7 +237,8 @@ if (foo.equalsIgnoreCase("foo") &&
     System.out.println("Both match!");
 }
 </pre>
-</td><td>
+</td>
+</tr><tr valign="top"><th>Humane</th><td>
 <pre lang="java">
 if (
     foo.equalsIgnoreCase("foo") &&
@@ -243,9 +246,8 @@ if (
 ) {
     System.out.println("Both match!");
 }
-
-// or
-
+</pre></td><td>
+<pre lang="java">
 if (
     foo.equalsIgnoreCase("foo") &&
     bar.equalsIgnoreCase("bar")
