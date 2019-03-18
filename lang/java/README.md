@@ -223,54 +223,13 @@ We end up with following simple principal differences from (previously establish
 </tr></thead><tbody><tr valign="top">
 <th>Legacy</th><td>
 <pre lang="java">
-if (foo.equalsIgnoreCase("foo") &&
-        bar.equalsIgnoreCase("bar")) {
-    System.out.println("Both match!");
-}
-</pre>
-</td><td>
-<pre lang="java">
-if (foo.equalsIgnoreCase("foo") &&
-        bar.equalsIgnoreCase("bar"))
-{
-    System.out.println("Both match!");
-}
-</pre>
-</td>
-</tr><tr valign="top"><th>Humane</th><td>
-<pre lang="java">
-if (
-    foo.equalsIgnoreCase("foo") &&
-    bar.equalsIgnoreCase("bar")
-) {
-    System.out.println("Both match!");
-}
-</pre></td><td>
-<pre lang="java">
-if (
-    foo.equalsIgnoreCase("foo") &&
-    bar.equalsIgnoreCase("bar")
-)
-{
-    System.out.println("Both match!");
-}
-</pre>
-</td>
-</tr></tbody></table>
-
-Now, contrast this to a common practice for annotations, for example. Why is this done:
-
-<table>
-<thead><tr valign="top">
-  <th>'{' on the same line</th>
-  <th>'{' on new line</th>
-  <th>Humane</th>
-</tr></thead><tbody><tr valign="top"><td>
-<pre lang="java">
 @Deprecated
 @Override
 public void foo() {
-    System.out.println("Foo!");
+    if (foo.equalsIgnoreCase("foo") &&
+            bar.equalsIgnoreCase("bar")) {
+        System.out.println("Match!");
+    }
 }
 </pre>
 </td><td>
@@ -279,10 +238,40 @@ public void foo() {
 @Override
 public void foo()
 {
-    System.out.println("Foo!");
+    if (foo.equalsIgnoreCase("foo") &&
+            bar.equalsIgnoreCase("bar"))
+    {
+        System.out.println("Match!");
+    }
 }
 </pre>
-</td><td>
-Same as either one on the left.
+</td>
+</tr><tr valign="top"><th>Humane</th><td>
+<pre lang="java">
+@Deprecated
+@Override
+public void foo() {
+    if (
+        foo.equalsIgnoreCase("foo") &&
+        bar.equalsIgnoreCase("bar")
+    ) {
+        System.out.println("Match!");
+    }
+}
+</pre></td><td>
+<pre lang="java">
+@Deprecated
+@Override
+public void foo()
+{
+    if (
+        foo.equalsIgnoreCase("foo") &&
+        bar.equalsIgnoreCase("bar")
+    )
+    {
+        System.out.println("Match!");
+    }
+}
+</pre>
 </td>
 </tr></tbody></table>
