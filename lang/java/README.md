@@ -20,7 +20,7 @@ following statements or a normally indented block that may follow. For example:
 <pre lang="java">
         if (foo.equalsIgnoreCase("foo") &&
                 bar.equalsIgnoreCase("bar")) {
-            System.out.println("Foo is foo and bar is bar!");
+            System.out.println("Both match!");
         }
 </pre>
 </td><td>
@@ -28,7 +28,7 @@ following statements or a normally indented block that may follow. For example:
         if (foo.equalsIgnoreCase("foo") &&
                 bar.equalsIgnoreCase("bar"))
         {
-            System.out.println("Foo is foo and bar is bar!");
+            System.out.println("Both match!");
         }
 </pre>
 </td></tr></tbody></table>
