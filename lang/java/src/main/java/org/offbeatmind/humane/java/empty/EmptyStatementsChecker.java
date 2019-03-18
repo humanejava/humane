@@ -18,7 +18,7 @@ import com.offbeatmind.humane.core.NodeSourceElement;
 import com.offbeatmind.humane.core.SourceElement;
 
 public class EmptyStatementsChecker extends Checker {
-    
+
     private static final boolean ALLOW_EMPTY_METHOD_BODIES = true;
     private static final boolean ALLOW_EMPTY_CLASSIFIERS = true;
     private static final boolean ALLOW_EMPTY_ENUMS = true;
@@ -38,14 +38,14 @@ public class EmptyStatementsChecker extends Checker {
                 }
             }
         });
-        
+
         javaFile.getCompilationUnit().walk(CatchClause.class, new Consumer<CatchClause>() {
             @Override
             public void accept(CatchClause clause) {
                 checkEmpty(clause);
             }
         });
-        
+
         javaFile.getCompilationUnit().walk(IfStmt.class, new Consumer<IfStmt>() {
             @Override
             public void accept(IfStmt ifStatement) {
@@ -54,14 +54,16 @@ public class EmptyStatementsChecker extends Checker {
                 if (elseStatement != null) checkEmpty(elseStatement);
             }
         });
-        
-        javaFile.getCompilationUnit().walk(ClassOrInterfaceDeclaration.class, new Consumer<ClassOrInterfaceDeclaration>() {
-            @Override
-            public void accept(ClassOrInterfaceDeclaration declaration) {
-                checkEmpty(declaration);
-            }
-        });
-        
+
+        javaFile
+            .getCompilationUnit()
+            .walk(ClassOrInterfaceDeclaration.class, new Consumer<ClassOrInterfaceDeclaration>() {
+                @Override
+                public void accept(ClassOrInterfaceDeclaration declaration) {
+                    checkEmpty(declaration);
+                }
+            });
+
         javaFile.getCompilationUnit().walk(EnumDeclaration.class, new Consumer<EnumDeclaration>() {
             @Override
             public void accept(EnumDeclaration declaration) {
@@ -69,20 +71,22 @@ public class EmptyStatementsChecker extends Checker {
             }
         });
     }
-    
+
     private <N extends Node> void checkEmpty(N node) {
         final NodeSourceElement<N> element = NodeSourceElement.of(node);
         List<SourceElement> children = new LinkedList<>(element.getElements());
         SourceElement first = children.get(0);
+        
         if (first.isToken() && first.asTokenElement().getText().contentEquals("{")) {
             children.remove(0);
             children.remove(children.size() - 1);
         }
-        for (SourceElement child: children) {
+        for (SourceElement child : children) {
             if (!child.isWhitespace()) return;
         }
-        
+
         Node parent = node.getParentNode().get();
+        
         if (parent instanceof MethodDeclaration) {
             if (ALLOW_EMPTY_METHOD_BODIES) return;
         } else if (parent instanceof ClassOrInterfaceDeclaration) {
@@ -90,7 +94,7 @@ public class EmptyStatementsChecker extends Checker {
         } else if (parent instanceof EnumDeclaration) {
             if (ALLOW_EMPTY_ENUMS) return;
         }
-        
+
         addViolation(new CompletelyEmptyViolation(element));
     }
 }

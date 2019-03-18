@@ -23,7 +23,7 @@ public class NoSpaceAfterMethodNamesChecker extends Checker {
     @Override
     public void check() {
         // No spaces
-        checkMethodCalls();        
+        checkMethodCalls();
         checkObjectCreationExpressions();
         checkExplicitConstructorCalls();
         checkConstructorDeclarations();
@@ -43,9 +43,9 @@ public class NoSpaceAfterMethodNamesChecker extends Checker {
 
     private void checkMethodCall(NodeSourceElement<MethodCallExpr> element) {
         // TODO Auto-generated method stub
-        
+
     }
-    
+
     private void checkObjectCreationExpressions() {
         javaFile.walkElements(ObjectCreationExpr.class, new Consumer<NodeSourceElement<ObjectCreationExpr>>() {
             @Override
@@ -57,21 +57,25 @@ public class NoSpaceAfterMethodNamesChecker extends Checker {
 
     private void checkObjectCreationExpression(NodeSourceElement<ObjectCreationExpr> element) {
         // TODO Auto-generated method stub
-        
+
     }
 
     private void checkExplicitConstructorCalls() {
-        javaFile.walkElements(ExplicitConstructorInvocationStmt.class, new Consumer<NodeSourceElement<ExplicitConstructorInvocationStmt>>() {
-            @Override
-            public void accept(NodeSourceElement<ExplicitConstructorInvocationStmt> element) {
-                checkExplicitConstructorCall(element);
-            }
-        });
+        javaFile
+            .walkElements(
+                ExplicitConstructorInvocationStmt.class,
+                new Consumer<NodeSourceElement<ExplicitConstructorInvocationStmt>>() {
+                    @Override
+                    public void accept(NodeSourceElement<ExplicitConstructorInvocationStmt> element) {
+                        checkExplicitConstructorCall(element);
+                    }
+                }
+            );
     }
 
     private void checkExplicitConstructorCall(NodeSourceElement<ExplicitConstructorInvocationStmt> element) {
         // TODO Auto-generated method stub
-        
+
     }
 
     private void checkConstructorDeclarations() {
@@ -85,7 +89,7 @@ public class NoSpaceAfterMethodNamesChecker extends Checker {
 
     private void checkConstructorDeclaration(NodeSourceElement<ConstructorDeclaration> element) {
         // TODO Auto-generated method stub
-        
+
     }
 
     private void checkMethodDeclarations() {
@@ -99,7 +103,7 @@ public class NoSpaceAfterMethodNamesChecker extends Checker {
 
     private void checkMethodDeclaration(NodeSourceElement<MethodDeclaration> element) {
         // TODO Auto-generated method stub
-        
+
     }
 
     private void checkArrayCreationExpressions() {
@@ -113,7 +117,7 @@ public class NoSpaceAfterMethodNamesChecker extends Checker {
 
     private void checkArrayCreationExpression(NodeSourceElement<ArrayCreationExpr> element) {
         // TODO Auto-generated method stub
-        
+
     }
 
     private void checkArrayAccessExpressions() {
@@ -127,6 +131,6 @@ public class NoSpaceAfterMethodNamesChecker extends Checker {
 
     private void checkArrayAccessExpression(NodeSourceElement<ArrayAccessExpr> element) {
         // TODO Auto-generated method stub
-        
+
     }
 }

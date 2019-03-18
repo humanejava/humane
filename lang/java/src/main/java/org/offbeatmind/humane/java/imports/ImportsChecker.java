@@ -14,7 +14,7 @@ public class ImportsChecker extends Checker {
     public ImportsChecker(JavaFile javaFile) {
         super(javaFile);
     }
-    
+
     @Override
     public void check() {
         javaFile.walkElements(ImportDeclaration.class, new Consumer<NodeSourceElement<ImportDeclaration>>() {

@@ -16,11 +16,10 @@ public class IfElseBracesChecker extends Checker {
         super(javaFile);
         // TODO Auto-generated constructor stub
     }
-    
+
     private static boolean isMultiline(Node node) {
         return node.getEnd().get().line != node.getBegin().get().line;
     }
-    
 
     @Override
     public void check() {
@@ -31,13 +30,17 @@ public class IfElseBracesChecker extends Checker {
                 if (isMultiline(ifStatement)) {
                     Statement thenStatement = ifStatement.getThenStmt();
                     Statement elseStatement = ifStatement.getElseStmt().orElse(null);
-                    
+
                     if (!(thenStatement.isBlockStmt() || thenStatement.isEmptyStmt())) {
                         addViolation(new ForebiddenMultilineNonBlockStatement(NodeSourceElement.of(thenStatement)));
                     }
-                    
+
                     if (elseStatement != null) {
-                        if (!(elseStatement.isBlockStmt() || elseStatement.isEmptyStmt() || (elseStatement instanceof IfStmt))) {
+                        if (
+                            !(elseStatement.isBlockStmt()
+                                || elseStatement.isEmptyStmt() || (elseStatement instanceof IfStmt)
+                            )
+                        ) {
                             addViolation(new ForebiddenMultilineNonBlockStatement(NodeSourceElement.of(elseStatement)));
                         }
                     }

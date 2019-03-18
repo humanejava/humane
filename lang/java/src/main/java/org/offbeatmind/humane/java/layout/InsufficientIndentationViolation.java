@@ -3,9 +3,9 @@ package org.offbeatmind.humane.java.layout;
 import com.offbeatmind.humane.core.SourceElement;
 
 public class InsufficientIndentationViolation extends IndentationViolation {
-    
+
     private final int minIndentation;
-    
+
     public InsufficientIndentationViolation(
         SourceElement violatingElement,
         int actualIndentation,
@@ -17,8 +17,9 @@ public class InsufficientIndentationViolation extends IndentationViolation {
 
     @Override
     public String getMessage() {
-        return "Indentation of line #" + getLineNumber() + " (" + getActualIndentation() + 
-                ") is less than the required minimum  " + minIndentation + 
-                ".";
+        return "Indentation of line #"
+            + getLineNumber() + " (" + getActualIndentation() +
+            ") is less than the required minimum  " + minIndentation +
+            ".";
     }
 }

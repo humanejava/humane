@@ -10,8 +10,8 @@ public class SingleItemPerLineViolation extends Violation {
     private final NodeSourceElement<Node> preexistingNode;
 
     public SingleItemPerLineViolation(
-            SourceElement violatingElement,
-            NodeSourceElement<Node> preexistingNode
+        SourceElement violatingElement,
+        NodeSourceElement<Node> preexistingNode
     ) {
         super(violatingElement);
         this.preexistingNode = preexistingNode;
@@ -19,9 +19,9 @@ public class SingleItemPerLineViolation extends Violation {
 
     @Override
     public String getMessage() {
-        return
-                "There should be no more than one item per line and another is already there at " + 
-                preexistingNode.getRange().get();
+        return "There should be no more than one item per line and another is already there at "
+            +
+            preexistingNode.getRange().get();
     }
 
 }

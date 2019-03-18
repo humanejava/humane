@@ -14,11 +14,11 @@ public abstract class LoopBracesChecker extends Checker {
     public LoopBracesChecker(JavaFile javaFile) {
         super(javaFile);
     }
-    
+
     protected void checkAllMultiline(Node entireLoop, final Statement loopBody) {
         if (REQUIRE_BRACES_FOR_MULTILINE_LOOPS) {
             final int statementStartLine = entireLoop.getEnd().get().line;
-            
+
             if (statementStartLine != loopBody.getEnd().get().line) {
                 addViolation(new ForebiddenMultilineNonBlockStatement(NodeSourceElement.of(loopBody)));
             }

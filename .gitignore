@@ -5,6 +5,8 @@
 */build/
 */bin/main/
 */bin/test/
+.classpath
+.project
 
 # Ignore Gradle GUI config
 gradle-app.setting

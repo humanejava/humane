@@ -11,9 +11,9 @@ public class TrailingScopeEndOnSeparateLineViolation extends Violation {
 
     @Override
     public String getMessage() {
-        return
-                "Scope end token at " +  getPosition() + 
-                " cannot be in this line - it must match the scope opening.";
+        return "Scope end token at "
+            + getPosition() +
+            " cannot be in this line - it must match the scope opening.";
     }
 
 }

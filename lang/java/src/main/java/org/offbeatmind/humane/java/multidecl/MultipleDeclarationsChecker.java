@@ -12,7 +12,7 @@ import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
 
 public class MultipleDeclarationsChecker extends Checker {
-    
+
     private final HashSet<Position> observedPositions;
 
     public MultipleDeclarationsChecker(JavaFile javaFile) {
@@ -29,13 +29,13 @@ public class MultipleDeclarationsChecker extends Checker {
             }
         });
     }
-    
+
     private void checkMultiple(Node node) {
         final Node parent = node.getParentNode().orElse(null);
         // Parent may be either FieldDeclaration or VariableDeclarationExpr
-        
+
         final Position position = parent.getBegin().orElse(null);
-        
+
         if (position != null) {
             if (!observedPositions.add(position)) {
                 addViolation(new MultipleDeclarationsViolation(NodeSourceElement.of(node)));

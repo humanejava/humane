@@ -24,38 +24,31 @@ import com.offbeatmind.humane.core.SourceTree;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        SourceTree tree = new SourceTree(new File(args[0]));
-        
-        tree.acceptFileVisitor(new Consumer<JavaFile>() {
-
-            @Override
-            public void accept(JavaFile f) {
-                (new LayoutChecker(f)).check(); // test empty lines between methods, classes
-                (new IfElseBracesChecker(f)).check();
-                (new WhileLoopBracesChecker(f)).check();
-                (new DoWhileLoopBracesChecker(f)).check();
-                (new ForLoopBracesChecker(f)).check();
-                (new ForEachLoopBracesChecker(f)).check();
-                (new ImportsChecker(f)).check();
-                (new CompilationUnitContentChecker(f)).check();
-                (new EmptyStatementsChecker(f)).check();
-                (new MultipleDeclarationsChecker(f)).check();
-                (new BasicWhitespaceChecker(f)).check();
-                (new ItemsPerLineChecker(f)).check();
-                (new AnnotationLayoutChecker(f)).check();
-                //(new SpaceAfterFlowControlKeywordChecker(f)).check();
-                
-                // space after comma
-                
-                f.printViolations();
-                try {
-                    while (true) 
-                        throw new RuntimeException(
-                                "foo bar");
-                } catch (RuntimeException rx) {}
-                            
-            }
-        });
+        for (String sourceTreePath: args) {
+            SourceTree tree = new SourceTree(new File(sourceTreePath));
+    
+            tree.acceptFileVisitor(new Consumer<JavaFile>() {
+    
+                @Override
+                public void accept(JavaFile f) {
+                    (new LayoutChecker(f)).check();
+                    (new IfElseBracesChecker(f)).check();
+                    (new WhileLoopBracesChecker(f)).check();
+                    (new DoWhileLoopBracesChecker(f)).check();
+                    (new ForLoopBracesChecker(f)).check();
+                    (new ForEachLoopBracesChecker(f)).check();
+                    (new ImportsChecker(f)).check();
+                    (new CompilationUnitContentChecker(f)).check();
+                    (new EmptyStatementsChecker(f)).check();
+                    (new MultipleDeclarationsChecker(f)).check();
+                    (new BasicWhitespaceChecker(f)).check();
+                    (new ItemsPerLineChecker(f)).check();
+                    (new AnnotationLayoutChecker(f)).check();
+    
+                    f.printViolations();
+                }
+            });
+        }
     }
 
 }

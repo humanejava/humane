@@ -6,12 +6,12 @@ import com.offbeatmind.humane.core.SourceElement;
 import com.offbeatmind.humane.core.Violation;
 
 public class SingleAnnotationPerLineViolation extends Violation {
-    
+
     private final NodeSourceElement<AnnotationExpr> preexistingAnnotation;
 
     public SingleAnnotationPerLineViolation(
-            SourceElement violatingElement,
-            NodeSourceElement<AnnotationExpr> preexistingAnnotation
+        SourceElement violatingElement,
+        NodeSourceElement<AnnotationExpr> preexistingAnnotation
     ) {
         super(violatingElement);
         this.preexistingAnnotation = preexistingAnnotation;
@@ -19,9 +19,9 @@ public class SingleAnnotationPerLineViolation extends Violation {
 
     @Override
     public String getMessage() {
-        return
-                "There should be no more than one annotation per line and another is already there at " + 
-                preexistingAnnotation.getRange().get();
+        return "There should be no more than one annotation per line and another is already there at "
+            +
+            preexistingAnnotation.getRange().get();
     }
 
 }

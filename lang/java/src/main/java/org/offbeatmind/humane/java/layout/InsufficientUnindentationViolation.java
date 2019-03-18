@@ -5,7 +5,7 @@ import com.offbeatmind.humane.core.SourceElement;
 public class InsufficientUnindentationViolation extends IndentationViolation {
 
     private final int maxIndentation;
-    
+
     public InsufficientUnindentationViolation(
         SourceElement violatingElement,
         int actualIndentation,
@@ -17,10 +17,11 @@ public class InsufficientUnindentationViolation extends IndentationViolation {
 
     @Override
     public String getMessage() {
-        return "Line #" + getLineNumber() + 
-                " is not unindented enough and its indentation ("+ getActualIndentation() + ")" +
-                " is more than the maximum allowed (" + maxIndentation + ")" +
-                ".";
+        return "Line #"
+            + getLineNumber() +
+            " is not unindented enough and its indentation (" + getActualIndentation() + ")" +
+            " is more than the maximum allowed (" + maxIndentation + ")" +
+            ".";
     }
 
 }

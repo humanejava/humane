@@ -6,12 +6,12 @@ import com.offbeatmind.humane.core.SourceElement;
 import com.offbeatmind.humane.core.Violation;
 
 public class AnnotationMixViolation extends Violation {
-    
+
     private final NodeSourceElement<AnnotationExpr> preexistingAnnotation;
 
     public AnnotationMixViolation(
-            SourceElement violatingElement,
-            NodeSourceElement<AnnotationExpr> preexistingAnnotation
+        SourceElement violatingElement,
+        NodeSourceElement<AnnotationExpr> preexistingAnnotation
     ) {
         super(violatingElement);
         this.preexistingAnnotation = preexistingAnnotation;
@@ -19,9 +19,9 @@ public class AnnotationMixViolation extends Violation {
 
     @Override
     public String getMessage() {
-        return
-                "Non-annotation code should not be present in the same line as annotation: " + 
-                preexistingAnnotation.getRange().get();
+        return "Non-annotation code should not be present in the same line as annotation: "
+            +
+            preexistingAnnotation.getRange().get();
     }
 
 }

@@ -12,7 +12,7 @@ public class CompletelyEmptyViolation extends Violation {
     @Override
     public String getMessage() {
         return "Completely empty blocks are not permitted - add a comment at least";
-        
+
     }
 
 }

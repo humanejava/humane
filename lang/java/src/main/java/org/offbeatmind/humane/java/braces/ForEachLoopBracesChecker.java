@@ -10,7 +10,7 @@ import com.offbeatmind.humane.core.SourceElement;
 import com.offbeatmind.humane.core.TokenSourceElement;
 
 public class ForEachLoopBracesChecker extends LoopBracesChecker {
-    
+
     public ForEachLoopBracesChecker(JavaFile javaFile) {
         super(javaFile);
     }
@@ -23,32 +23,32 @@ public class ForEachLoopBracesChecker extends LoopBracesChecker {
             public void accept(ForEachStmt forStatement) {
                 final Statement body = forStatement.getBody();
                 if (body.isBlockStmt() || body.isEmptyStmt()) return;
-                
+
                 NodeSourceElement<ForEachStmt> forElement = NodeSourceElement.of(forStatement);
                 TokenSourceElement loopControlEnd = null;
-                
-                for (SourceElement e: forElement.getElements()) {
+
+                for (SourceElement e : forElement.getElements()) {
                     if (e.isToken()) {
-                        TokenSourceElement token = (TokenSourceElement)e;
-                        
+                        TokenSourceElement token = (TokenSourceElement) e;
+
                         if (")".contentEquals(token.getText())) {
                             loopControlEnd = token;
                             break;
                         }
                     }
                 }
-                
+
                 if (loopControlEnd == null) {
                     throw new RuntimeException("Didn't find the end of the for loop control block.");
                 }
-                
+
                 final int controlEndLine = loopControlEnd.getRange().get().end.line;
                 final int bodyEndLine = body.getEnd().get().line;
-                
+
                 if (controlEndLine != bodyEndLine) {
                     addViolation(new ForebiddenMultilineNonBlockStatement(NodeSourceElement.of(body)));
                 }
-                
+
                 checkAllMultiline(forStatement, body);
             }
         });

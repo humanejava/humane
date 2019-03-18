@@ -5,7 +5,7 @@ import com.offbeatmind.humane.core.Violation;
 
 public abstract class IndentationViolation extends Violation {
     private final int actualIndentation;
-    
+
     public IndentationViolation(
         SourceElement violatingElement,
         int actualIndentation
@@ -13,7 +13,7 @@ public abstract class IndentationViolation extends Violation {
         super(violatingElement);
         this.actualIndentation = actualIndentation;
     }
-    
+
     public int getActualIndentation() {
         return actualIndentation;
     }

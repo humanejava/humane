@@ -8,15 +8,15 @@ import java.util.function.Consumer;
 
 public class SourceTree {
     private final File rootDir;
-    
+
     public SourceTree(File rootDir) {
         this.rootDir = rootDir;
     }
-    
+
     public void acceptFileVisitor(Consumer<JavaFile> visitor) throws IOException {
         walk(rootDir, new ArrayList<String>(0), visitor);
     }
-    
+
     private void walk(File file, List<String> packagePath, Consumer<JavaFile> visitor) throws IOException {
         if (file.isFile()) {
             if (file.getName().toLowerCase().endsWith(".java")) {
@@ -26,7 +26,7 @@ public class SourceTree {
         } else if (file.isDirectory()) {
             List<String> newPackagePath = new ArrayList<String>(packagePath.size() + 1);
             newPackagePath.add(file.getName());
-            for (File entry: file.listFiles()) walk(entry, newPackagePath, visitor);
-        }   
+            for (File entry : file.listFiles()) walk(entry, newPackagePath, visitor);
+        }
     }
 }

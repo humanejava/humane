@@ -13,23 +13,24 @@ public class CompilationUnitContentChecker extends Checker {
     public CompilationUnitContentChecker(JavaFile javaFile) {
         super(javaFile);
     }
-    
+
     @Override
     public void check() {
         final String allowedName = javaFile.getUnitName();
-        
-        for (Node child: javaFile.getCompilationUnit().getChildNodes()) {
+
+        for (Node child : javaFile.getCompilationUnit().getChildNodes()) {
             boolean violating;
+            
             if (child instanceof ClassOrInterfaceDeclaration) {
-                final ClassOrInterfaceDeclaration decl = (ClassOrInterfaceDeclaration)child;
+                final ClassOrInterfaceDeclaration decl = (ClassOrInterfaceDeclaration) child;
                 violating = !decl.getName().getIdentifier().contentEquals(allowedName);
             } else if (child instanceof EnumDeclaration) {
-                final EnumDeclaration decl = (EnumDeclaration)child;
+                final EnumDeclaration decl = (EnumDeclaration) child;
                 violating = !decl.getName().getIdentifier().contentEquals(allowedName);
             } else {
                 violating = false;
             }
-            
+
             if (violating) {
                 addViolation(new CompilationUnitContentViolation(NodeSourceElement.of(child)));
             }
