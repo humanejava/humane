@@ -1,10 +1,8 @@
 /.gradle/
 /buildSrc/.gradle/
 /.build-cache/
-/build/
-*/build/
-*/bin/main/
-*/bin/test/
+build/
+bin/
 .classpath
 .project
 
