@@ -221,7 +221,7 @@ We end up with following simple principal differences from (previously establish
   <th>'{' on the same line</th>
   <th>'{' on new line</th>
 </tr></thead><tbody><tr valign="top">
-<th>Standard</th><td>
+<th>Legacy</th><td>
 <pre lang="java">
 if (foo.equalsIgnoreCase("foo") &&
         bar.equalsIgnoreCase("bar")) {
