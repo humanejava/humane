@@ -17,20 +17,20 @@ following statements or a normally indented block that may follow. For example:
   <th>'{' on the same line</th>
   <th>'{' on new line</th>
 </tr></thead><tbody><tr><td>
-```java
+<pre lang="java">
         if (foo.equalsIgnoreCase("foo") &&
                 bar.equalsIgnoreCase("bar")) {
             System.out.println("Foo is foo and bar is bar!");
         }
-```
+</pre>
 </td><td>
-```java
+<pre lang="java">
         if (foo.equalsIgnoreCase("foo") &&
                 bar.equalsIgnoreCase("bar"))
         {
             System.out.println("Foo is foo and bar is bar!");
         }
-```
+</pre>
 </td></tr></tbody></table>
 
 Now, contrast this to a common practice for annotations, for example. Why is this done:
@@ -40,22 +40,22 @@ Now, contrast this to a common practice for annotations, for example. Why is thi
   <th>'{' on the same line</th>
   <th>'{' on new line</th>
 </tr></thead><tbody><tr><td>
-```java
+<pre lang="java">
     @Deprecated
     @Override
     public void foo() {
         System.out.println("Foo!");
     }
-```
+</pre>
 </td><td>
-```java
+<pre lang="java">
     @Deprecated
     @Override
     public void foo()
     {
         System.out.println("Foo!");
     }
-```
+</pre>
 </td></tr></tbody></table>
 
 ... and not apply the same line wrapping as `@Deprecated` and `@Override` belong to the same method signature, to produce one of the following **ugly** possibilities:
@@ -66,51 +66,51 @@ Now, contrast this to a common practice for annotations, for example. Why is thi
   <th>'{' on new line</th>
 </tr></thead><tbody>
 <tr><td>
-```java
+<pre lang="java">
     @Deprecated
             @Override
             public void foo() {
         System.out.println("Foo!");
     }
-```
+</pre>
 </td><td>
-  ```java
+  <pre lang="java">
     @Deprecated
             @Override
             public void foo()
     {
         System.out.println("Foo!");
     }
-```
+</pre>
 </td></tr>
 <tr><td>
-```java
+<pre lang="java">
     @Deprecated
             @Override
             public void foo() {
                 System.out.println("Foo!");
             }
-```
+</pre>
 </td><td>
-  ```java
+  <pre lang="java">
     @Deprecated
             @Override
             public void foo()
             {
                 System.out.println("Foo!");
             }
-```
+</pre>
 </td></tr>
 <tr><td>
 </td><td>
-```java
+<pre lang="java">
     @Deprecated
             @Override
             public void foo()
             {
         System.out.println("Foo!");
     }
-```
+</pre>
 </td></tr>
 </tbody></table>
 
@@ -122,7 +122,7 @@ From these examples we can see that:
 
 
 How does one format expressions with many parentheses? Or argument lists? Is the following readable?
-```java
+<pre lang="java">
    public static <F extends Foo<F, B>,
            B extends Bar<F, B>>
            IdentityHashMap<
@@ -131,7 +131,7 @@ How does one format expressions with many parentheses? Or argument lists? Is the
            > x, HashMap<Integer, B> y) {
        ...
     }
-```
+</pre>
 
 How about the following?
 
@@ -141,7 +141,7 @@ How about the following?
   <th>'{' on new line</th>
 </tr></thead><tbody>
 <tr><td>
-```java
+<pre lang="java">
     public static <
         F extends Foo<F, B>,
         B extends Bar<F, B>
@@ -157,9 +157,9 @@ How about the following?
     ) {
        ...
     }
-```
+</pre>
 </td><td>
-```java
+<pre lang="java">
     public static
     <
         F extends Foo<F, B>,
@@ -181,7 +181,7 @@ How about the following?
     {
        ...
     }
-```
+</pre>
 </td></tr>
 </tbody></table>
 
