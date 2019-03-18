@@ -3,7 +3,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.offbeatmind.humane/humane.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.offbeatmind.humanejava%22%20AND%20a%3A%humanejava-core%22)
 [![Build Status](https://travis-ci.org/humanejava/humane.svg?branch=master)](https://travis-ci.org/humanejava/humane)
 [![Coverage Status](https://coveralls.io/repos/humanejava/humanejava/badge.svg?branch=master&service=github)](https://coveralls.io/github/humanejava/humanejava?branch=master)
-[![Join the chat at https://gitter.im/humanejava/humanejava](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/humanejava/humanejava?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at Gitter](https://badges.gitter.im/humane-code/community.svg)](https://gitter.im/humane-code/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![License LGPL-3/Apache-2.0](https://img.shields.io/badge/license-LGPL--3%2FApache--2.0-blue.svg)](LICENSE)
 
 This project brings rational and humane coding style (formatting) aid and enforcement tools, 
