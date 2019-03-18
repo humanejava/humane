@@ -44,6 +44,6 @@ For details see the language-specific README:
 
 Humane Java is available either under the terms of the LGPL License or the Apache License. You as the user are entitled to choose the terms under which adopt Humane Java.
 
-For details about the LGPL License please refer to [LICENSE.LGPL](https://github.com/humanejava/humanejava/blob/master/LICENSE.LGPL).
+For details about the LGPL License please refer to [LICENSE-LGPL.txt](LICENSE-LGPL.txt).
 
-For details about the Apache License please refer to [LICENSE.APACHE](https://github.com/humanejava/humanejava/blob/master/LICENSE.APACHE).
+For details about the Apache License please refer to [LICENSE-Apache.txt](LICENSE-Apache.txt).
