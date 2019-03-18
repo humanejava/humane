@@ -13,10 +13,10 @@ indented, usually double the normal indentation, arguably to make it visually di
 following statements or a normally indented block that may follow. For example:
 
 <table>
-<thead><tr>
+<thead><tr valign="top">
   <th>'{' on the same line</th>
   <th>'{' on new line</th>
-</tr></thead><tbody><tr><td>
+</tr></thead><tbody><tr valign="top"><td>
 <pre lang="java">
         if (foo.equalsIgnoreCase("foo") &&
                 bar.equalsIgnoreCase("bar")) {
@@ -36,10 +36,10 @@ following statements or a normally indented block that may follow. For example:
 Now, contrast this to a common practice for annotations, for example. Why is this done:
 
 <table>
-<thead><tr>
+<thead><tr valign="top">
   <th>'{' on the same line</th>
   <th>'{' on new line</th>
-</tr></thead><tbody><tr><td>
+</tr></thead><tbody><tr valign="top"><td>
 <pre lang="java">
     @Deprecated
     @Override
@@ -61,11 +61,11 @@ Now, contrast this to a common practice for annotations, for example. Why is thi
 ... and not apply the same line wrapping as `@Deprecated` and `@Override` belong to the same method signature, to produce one of the following **ugly** possibilities:
 
 <table>
-<thead><tr>
+<thead><tr valign="top">
   <th>'{' on the same line</th>
   <th>'{' on new line</th>
 </tr></thead><tbody>
-<tr><td>
+<tr valign="top"><td>
 <pre lang="java">
     @Deprecated
             @Override
@@ -83,7 +83,7 @@ Now, contrast this to a common practice for annotations, for example. Why is thi
     }
 </pre>
 </td></tr>
-<tr><td>
+<tr valign="top"><td>
 <pre lang="java">
     @Deprecated
             @Override
@@ -101,7 +101,7 @@ Now, contrast this to a common practice for annotations, for example. Why is thi
             }
 </pre>
 </td></tr>
-<tr><td>
+<tr valign="top"><td>
 </td><td>
 <pre lang="java">
     @Deprecated
@@ -123,12 +123,12 @@ From these examples we can see that:
 
 How does one format expressions with many parentheses? Or argument lists? Is the following readable?
 <pre lang="java">
-   public static <F extends Foo<F, B>,
-           B extends Bar<F, B>>
-           IdentityHashMap<
-           ConcurrentHashMap<String, F
-           >, B> foo(TreeMap<F, Integer
-           > x, HashMap<Integer, B> y) {
+   public static &lt;F extends Foo&lt;F, B&gt;,
+           B extends Bar&lt;F, B&gt;&gt;
+           IdentityHashMap&lt;
+           ConcurrentHashMap&lt;String, F
+           &gt;, B&gt; foo(TreeMap&lt;F, Integer
+           &gt; x, HashMap&lt;Integer, B&gt; y) {
        ...
     }
 </pre>
@@ -136,24 +136,24 @@ How does one format expressions with many parentheses? Or argument lists? Is the
 How about the following?
 
 <table>
-<thead><tr>
+<thead><tr valign="top">
   <th>'{' on the same line</th>
   <th>'{' on new line</th>
 </tr></thead><tbody>
-<tr><td>
+<tr valign="top"><td>
 <pre lang="java">
-    public static <
-        F extends Foo<F, B>,
-        B extends Bar<F, B>
-    > IdentityHashMap<
-        ConcurrentHashMap<
+    public static &lt;
+        F extends Foo&lt;F, B&gt;,
+        B extends Bar&lt;F, B&gt;
+    &gt; IdentityHashMap&lt;
+        ConcurrentHashMap&lt;
             String, 
             F
-        >,
+        &gt;,
         B
-    > foo(
-        TreeMap<F, Integer> x,
-        HashMap<Integer, B> y
+    &gt; foo(
+        TreeMap&lt;F, Integer&gt; x,
+        HashMap&lt;Integer, B&gt; y
     ) {
        ...
     }
@@ -161,22 +161,22 @@ How about the following?
 </td><td>
 <pre lang="java">
     public static
-    <
-        F extends Foo<F, B>,
-        B extends Bar<F, B>
-    >
+    &lt;
+        F extends Foo&lt;F, B&gt;,
+        B extends Bar&lt;F, B&gt;
+    &gt;
     IdentityHashMap
-    <
+    &lt;
         ConcurrentHashMap
-        <
+        &lt;
             String, 
             F
-        >,
+        &gt;,
         B
-    >
+    &gt;
     foo(
-        TreeMap<F, Integer> x,
-        HashMap<Integer, B> y
+        TreeMap&lt;F, Integer&gt; x,
+        HashMap&lt;Integer, B&gt; y
     )
     {
        ...
