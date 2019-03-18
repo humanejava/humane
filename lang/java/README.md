@@ -213,3 +213,75 @@ We end up with following simple principal differences from (previously establish
   5. A single line can only end blocks started on the same line and at most one other line.
   6. Horizontal code alignment is welcome when it improves readability. Yes, as Google says, it has a "blast radius" when (future) changes are made but "so what?" if it improves readability and, more often than not, that blast radius is actually useful to detect historical changes related to the same code (and otherwise easily ignored). Occasional merge conflicts will be just that - occasional and the benefit of readability will easily outweigh this.
   
+  ## Side-by-side comparison
+
+<table>
+<thead><tr valign="top">
+  <th>'{' on the same line</th>
+  <th>'{' on new line</th>
+  <th>(One Possible) Humane</th>
+</tr></thead><tbody><tr valign="top"><td>
+<pre lang="java">
+if (foo.equalsIgnoreCase("foo") &&
+        bar.equalsIgnoreCase("bar")) {
+    System.out.println("Both match!");
+}
+</pre>
+</td><td>
+<pre lang="java">
+if (foo.equalsIgnoreCase("foo") &&
+        bar.equalsIgnoreCase("bar"))
+{
+    System.out.println("Both match!");
+}
+</pre>
+</td><td>
+<pre lang="java">
+if (
+    foo.equalsIgnoreCase("foo") &&
+    bar.equalsIgnoreCase("bar")
+) {
+    System.out.println("Both match!");
+}
+
+// or
+
+if (
+    foo.equalsIgnoreCase("foo") &&
+    bar.equalsIgnoreCase("bar")
+)
+{
+    System.out.println("Both match!");
+}
+</pre>
+</td>
+</tr></tbody></table>
+
+Now, contrast this to a common practice for annotations, for example. Why is this done:
+
+<table>
+<thead><tr valign="top">
+  <th>'{' on the same line</th>
+  <th>'{' on new line</th>
+  <th>Humane</th>
+</tr></thead><tbody><tr valign="top"><td>
+<pre lang="java">
+@Deprecated
+@Override
+public void foo() {
+    System.out.println("Foo!");
+}
+</pre>
+</td><td>
+<pre lang="java">
+@Deprecated
+@Override
+public void foo()
+{
+    System.out.println("Foo!");
+}
+</pre>
+</td><td>
+Same as either one on the left.
+</td>
+</tr></tbody></table>
