@@ -3,13 +3,13 @@ package com.offbeatmind.humane.tool;
 import java.io.File;
 import java.io.IOException;
 
-import com.offbeatmind.humane.core.Language;
+import com.offbeatmind.humane.core.LanguageProcessor;
 import com.offbeatmind.humane.core.SourceTree;
-import com.offbeatmind.humane.java.JavaLanguage;
+import com.offbeatmind.humane.java.JavaLanguageProcessor;
 
 public class Main {
     
-    private static Language currentLanguage = JavaLanguage.INSTANCE;
+    private static LanguageProcessor currentLanguage = JavaLanguageProcessor.INSTANCE;
 
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
@@ -70,7 +70,7 @@ public class Main {
     }
 
     private static void setJava() {
-        currentLanguage = JavaLanguage.INSTANCE;
+        currentLanguage = JavaLanguageProcessor.INSTANCE;
         
     }
 
@@ -96,7 +96,7 @@ public class Main {
 
     private static void processPath(String arg) throws IOException {
         SourceTree sourceTree = new SourceTree(new File(arg));
-        currentLanguage.check(sourceTree);
+        currentLanguage.process(false, sourceTree);
     }
 
     private static void help() {

@@ -4,10 +4,10 @@ import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.SourceFile;
 import com.offbeatmind.humane.core.Violation;
 
-public abstract class Checker {
+public abstract class JavaFileProcessor {
     protected final JavaFile javaFile;
 
-    public Checker(JavaFile javaFile) {
+    public JavaFileProcessor(JavaFile javaFile) {
         this.javaFile = javaFile;
     }
 
@@ -15,7 +15,7 @@ public abstract class Checker {
         return javaFile;
     }
 
-    public abstract void check();
+    public abstract void process(boolean fixErrors);
 
     protected void addViolation(Violation violation) {
         javaFile.addViolation(violation);

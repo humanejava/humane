@@ -5,9 +5,9 @@ import java.util.function.Consumer;
 import com.github.javaparser.ast.ImportDeclaration;
 import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public class ImportsChecker extends Checker {
+public class ImportsChecker extends JavaFileProcessor {
     private static final boolean ALLOW_STATIC_IMPORTS = Boolean.getBoolean("allowStaticImports");
 
     public ImportsChecker(JavaFile javaFile) {
@@ -15,7 +15,7 @@ public class ImportsChecker extends Checker {
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         javaFile.walkElements(ImportDeclaration.class, new Consumer<NodeSourceElement<ImportDeclaration>>() {
 
             @Override

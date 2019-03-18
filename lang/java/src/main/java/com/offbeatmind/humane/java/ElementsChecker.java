@@ -7,7 +7,7 @@ import com.offbeatmind.humane.core.NodeSourceElement;
 import com.offbeatmind.humane.core.SourceElement;
 import com.offbeatmind.humane.core.TokenSourceElement;
 
-public abstract class ElementsChecker extends Checker {
+public abstract class ElementsChecker extends JavaFileProcessor {
 
     private NodeSourceElement<?> currentNode;
 
@@ -16,7 +16,7 @@ public abstract class ElementsChecker extends Checker {
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         initProcessing();
         processElements(javaFile.getElements());
         finalizeProcessing();

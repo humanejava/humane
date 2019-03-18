@@ -8,9 +8,9 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public class MultipleDeclarationsChecker extends Checker {
+public class MultipleDeclarationsChecker extends JavaFileProcessor {
 
     private final HashSet<Position> observedPositions;
 
@@ -20,7 +20,7 @@ public class MultipleDeclarationsChecker extends Checker {
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         javaFile.getCompilationUnit().walk(VariableDeclarator.class, new Consumer<VariableDeclarator>() {
             @Override
             public void accept(VariableDeclarator decl) {

@@ -16,7 +16,7 @@ public class ForLoopBracesChecker extends LoopBracesChecker {
     }
 
     @Override
-    public void check() {
+    public void process(final boolean fixErrors) {
         javaFile.getCompilationUnit().walk(ForStmt.class, new Consumer<ForStmt>() {
 
             @Override

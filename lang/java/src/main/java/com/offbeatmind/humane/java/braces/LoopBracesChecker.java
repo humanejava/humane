@@ -4,9 +4,9 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.stmt.Statement;
 import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public abstract class LoopBracesChecker extends Checker {
+public abstract class LoopBracesChecker extends JavaFileProcessor {
 
     protected static final Boolean REQUIRE_BRACES_FOR_MULTILINE_LOOPS = false;
 

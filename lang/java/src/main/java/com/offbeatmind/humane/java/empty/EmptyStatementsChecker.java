@@ -14,9 +14,9 @@ import com.github.javaparser.ast.stmt.Statement;
 import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
 import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public class EmptyStatementsChecker extends Checker {
+public class EmptyStatementsChecker extends JavaFileProcessor {
 
     private static final boolean ALLOW_EMPTY_METHOD_BODIES = true;
     private static final boolean ALLOW_EMPTY_CLASSIFIERS = true;
@@ -28,7 +28,7 @@ public class EmptyStatementsChecker extends Checker {
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         javaFile.getCompilationUnit().walk(Statement.class, new Consumer<Statement>() {
             @Override
             public void accept(Statement statement) {

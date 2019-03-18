@@ -7,9 +7,9 @@ import com.github.javaparser.ast.stmt.IfStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public class IfElseBracesChecker extends Checker {
+public class IfElseBracesChecker extends JavaFileProcessor {
 
     public IfElseBracesChecker(JavaFile javaFile) {
         super(javaFile);
@@ -21,7 +21,7 @@ public class IfElseBracesChecker extends Checker {
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         javaFile.getCompilationUnit().walk(IfStmt.class, new Consumer<IfStmt>() {
 
             @Override

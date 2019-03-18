@@ -12,16 +12,16 @@ import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
 import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
 import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public class AnnotationLayoutChecker extends Checker {
+public class AnnotationLayoutChecker extends JavaFileProcessor {
 
     public AnnotationLayoutChecker(JavaFile javaFile) {
         super(javaFile);
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         javaFile.walkElements(TypeDeclaration.class, this::checkMaxOneAnnotationPerLine);
         javaFile.walkElements(CallableDeclaration.class, this::checkMaxOneAnnotationPerLine);
         javaFile.walkElements(VariableDeclarationExpr.class, this::checkMaxOneAnnotationPerLine);

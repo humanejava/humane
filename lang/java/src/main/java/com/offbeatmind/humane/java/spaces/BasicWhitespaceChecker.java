@@ -32,9 +32,9 @@ import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
 import com.offbeatmind.humane.core.SourceElement;
 import com.offbeatmind.humane.core.TokenSourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public class BasicWhitespaceChecker extends Checker {
+public class BasicWhitespaceChecker extends JavaFileProcessor {
 
     private static final boolean ALLOW_UNSPACED_COMMAS_IN_SINGLE_LETTER_TYPE_ARGS = true;
 
@@ -152,7 +152,7 @@ public class BasicWhitespaceChecker extends Checker {
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         processElements(javaFile.getElements());
     }
 

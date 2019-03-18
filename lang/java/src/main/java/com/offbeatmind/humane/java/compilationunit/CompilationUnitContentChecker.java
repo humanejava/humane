@@ -5,16 +5,16 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.EnumDeclaration;
 import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public class CompilationUnitContentChecker extends Checker {
+public class CompilationUnitContentChecker extends JavaFileProcessor {
 
     public CompilationUnitContentChecker(JavaFile javaFile) {
         super(javaFile);
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         final String allowedName = javaFile.getUnitName();
 
         for (Node child : javaFile.getCompilationUnit().getChildNodes()) {

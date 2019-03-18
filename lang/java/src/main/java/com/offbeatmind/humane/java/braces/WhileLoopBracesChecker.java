@@ -14,7 +14,7 @@ public class WhileLoopBracesChecker extends LoopBracesChecker {
     }
 
     @Override
-    public void check() {
+    public void process(final boolean fixErrors) {
         javaFile.getCompilationUnit().walk(WhileStmt.class, new Consumer<WhileStmt>() {
 
             @Override

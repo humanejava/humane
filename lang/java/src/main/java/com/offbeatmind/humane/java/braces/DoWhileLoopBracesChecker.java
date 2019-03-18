@@ -14,7 +14,7 @@ public class DoWhileLoopBracesChecker extends LoopBracesChecker {
     }
 
     @Override
-    public void check() {
+    public void process(final boolean fixErrors) {
         javaFile.getCompilationUnit().walk(DoStmt.class, new Consumer<DoStmt>() {
 
             @Override

@@ -11,16 +11,16 @@ import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.stmt.ExplicitConstructorInvocationStmt;
 import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public class NoSpaceAfterMethodNamesChecker extends Checker {
+public class NoSpaceAfterMethodNamesChecker extends JavaFileProcessor {
 
     public NoSpaceAfterMethodNamesChecker(JavaFile javaFile) {
         super(javaFile);
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         // No spaces
         checkMethodCalls();
         checkObjectCreationExpressions();

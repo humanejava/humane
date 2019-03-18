@@ -14,16 +14,16 @@ import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.TryStmt;
 import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public class ItemsPerLineChecker extends Checker {
+public class ItemsPerLineChecker extends JavaFileProcessor {
 
     public ItemsPerLineChecker(JavaFile javaFile) {
         super(javaFile);
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         checkMaxOnePerLine(javaFile.getCompilationUnit());
     }
 

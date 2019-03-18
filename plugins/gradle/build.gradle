@@ -1,7 +1,20 @@
-apply plugin: 'java'
+plugins {
+	id 'java-gradle-plugin'
+	id 'groovy'
+}
 
 dependencies {
+    implementation localGroovy()
     implementation project(':core')
     implementation project(':lang:generic')
     implementation project(':lang:java')
+}
+
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = 'com.offbeatmind.humane.gradle'
+            implementationClass = 'com.offbeatmind.humane.gradle.HumaneCodeGradlePlugin'
+        }
+    }
 }

@@ -8,16 +8,16 @@ import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.WhileStmt;
 import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.java.Checker;
+import com.offbeatmind.humane.java.JavaFileProcessor;
 
-public class SpaceAfterFlowControlKeywordChecker extends Checker {
+public class SpaceAfterFlowControlKeywordChecker extends JavaFileProcessor {
 
     public SpaceAfterFlowControlKeywordChecker(JavaFile javaFile) {
         super(javaFile);
     }
 
     @Override
-    public void check() {
+    public void process(boolean fixErrors) {
         checkIfSpacing();
         checkWhileLoopSpacing();
         //checkDoWhileLoopSpacing();

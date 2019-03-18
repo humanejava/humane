@@ -1,5 +1,8 @@
-apply plugin: 'java'
+plugins {
+    id 'java'
+}
 
 dependencies {
     implementation 'com.github.javaparser:javaparser-symbol-solver-core:3.13.2'
 }
+
