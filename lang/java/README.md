@@ -117,7 +117,7 @@ Now, contrast this to a common practice for annotations, for example. Why is thi
 
 From these examples we can see that:
 
-  - Both '{' placement standards seem to have accepted exceptions to line wrapping. Why? Because it would be ugly.
+  - Both '{' placement standards seem to have accepted exceptions to line wrapping. Why? Because the alternative looks very, very bad.
   - Common use of '{' on new line fails to apply the line wrapping indentation that seems like it "should" be applied, but would yield triple indentation of code inside the block (2x for wrapping + 1x inside the block, last example above).
 
 
