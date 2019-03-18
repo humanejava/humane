@@ -1,0 +1,7 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation project(':core')
+    implementation project(':lang:generic')
+    implementation 'com.github.javaparser:javaparser-symbol-solver-core:3.13.2'
+}

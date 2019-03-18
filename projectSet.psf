@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider">
+<project reference="1.0,https://github.com/humanejava/humane.git,master,core"/>
+<project reference="1.0,https://github.com/humanejava/humane.git,master,plugins/eclipse"/>
+<project reference="1.0,https://github.com/humanejava/humane.git,master,lang/generic"/>
+<project reference="1.0,https://github.com/humanejava/humane.git,master,plugins/gradle"/>
+<project reference="1.0,https://github.com/humanejava/humane.git,master,."/>
+<project reference="1.0,https://github.com/humanejava/humane.git,master,plugins/idea"/>
+<project reference="1.0,https://github.com/humanejava/humane.git,master,lang/java"/>
+<project reference="1.0,https://github.com/humanejava/humane.git,master,lang"/>
+<project reference="1.0,https://github.com/humanejava/humane.git,master,plugins/maven"/>
+<project reference="1.0,https://github.com/humanejava/humane.git,master,plugins"/>
+<project reference="1.0,https://github.com/humanejava/humane.git,master,tool"/>
+</provider>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1552838772681_4" label="lang" name="lang">
+<item elementID="=generic" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/lang" type="4"/>
+<item elementID="=java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1552838831544_6" label="main" name="main">
+<item elementID="=tool" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=core" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/humane" type="4"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1552838794829_5" label="plugins" name="plugins">
+<item elementID="=gradle" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=idea" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/plugins" type="4"/>
+<item elementID="=eclipse" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=maven" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+</psf>

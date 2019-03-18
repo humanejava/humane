@@ -1,0 +1,7 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation project(':core')
+    implementation project(':lang:generic')
+    implementation project(':lang:java')
+}

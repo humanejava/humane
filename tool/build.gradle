@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation project(':core')
+}
+
+Project thisProject = this.project;
+
+project(':lang').subprojects { langProject -> 
+    thisProject.dependencies {
+        implementation langProject
+    }
+}

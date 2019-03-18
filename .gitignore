@@ -1,5 +1,10 @@
-.gradle
+/.gradle/
+/buildSrc/.gradle/
+/.build-cache/
 /build/
+*/build/
+*/bin/main/
+*/bin/test/
 
 # Ignore Gradle GUI config
 gradle-app.setting
