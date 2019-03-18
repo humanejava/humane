@@ -215,8 +215,7 @@ We end up with following simple principal differences from (previously establish
 
 ## Side-by-side comparison
 
-Note that in "Humane" style the "quarrel" between two styles of placement of "{" is essentially non-existent as both equally make sense. We can (choose to artrificially) force either.
-
+Note that in "Humane" style the "quarrel" between two styles of placement of "{" is essentially non-existent as both are equally valid (new-line style is a line-wrapped end-of-line) unless explicitly forced either way.
 <table>
 <thead><tr valign="top">
   <th>Style</th>
