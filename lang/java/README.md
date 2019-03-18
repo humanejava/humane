@@ -212,8 +212,10 @@ We end up with following simple principal differences from (previously establish
   4. All kinds of blocks/scopes ('{...}', '[...]', '(...)' and '<...>') require indentation when multiline.
   5. A single line can only end blocks started on the same line and at most one other line.
   6. Horizontal code alignment is welcome when it improves readability. Yes, as Google says, it has a "blast radius" when (future) changes are made but "so what?" if it improves readability and, more often than not, that blast radius is actually useful to detect historical changes related to the same code (and otherwise easily ignored). Occasional merge conflicts will be just that - occasional and the benefit of readability will easily outweigh this.
-  
-  ## Side-by-side comparison
+
+## Side-by-side comparison
+
+Note that in "Humane" style the "quarrel" between two styles of placement of "{" is essentially non-existent as both equally make sense. We can (choose to artrificially) force either.
 
 <table>
 <thead><tr valign="top">
