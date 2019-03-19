@@ -8,6 +8,6 @@ script:
 
 after_success:
     - "ls -al humane*"
-    - "openssl aes-256-cbc -K $encrypted_57c3fa5caa44_key -iv $encrypted_57c3fa5caa44_iv -in humane.gpg.enc -out humane.gpg -d"
+    - "openssl aes-256-cbc -v -K $encrypted_57c3fa5caa44_key -iv $encrypted_57c3fa5caa44_iv -in humane.gpg.enc -out humane.gpg -d"
     - "ls -al humane*"
     - "./gradlew --info --console=plain publish"
