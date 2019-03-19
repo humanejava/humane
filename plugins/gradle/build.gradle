@@ -1,4 +1,5 @@
 plugins {
+    id "com.gradle.plugin-publish" version "0.10.1"
     id 'java-gradle-plugin'
     id 'groovy'
 }
@@ -12,9 +13,29 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        simplePlugin {
+        humaneCodeStylePlugin {
             id = 'com.offbeatmind.humane.gradle'
             implementationClass = 'com.offbeatmind.humane.gradle.HumaneCodeGradlePlugin'
         }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/humanejava/humane'
+    vcsUrl = 'https://github.com/humanejava/humane'
+    description = 'This project brings rational and humane coding style (formatting) aid and enforcement tools, starting with Java and, with welcome help of others, other languages.'
+    tags = ['check', 'style', 'validation', 'format', 'java']
+  
+    plugins {
+        humaneCodeStylePlugin {
+          // id is captured from java-gradle-plugin configuration
+          displayName = 'Humane Code Style plugin'
+        }
+    }
+    
+    mavenCoordinates {
+        groupId = 'com.offbeatmind.humane'
+        artifactId = 'humane-plugins-gradle'
+        version = project.version
     }
 }

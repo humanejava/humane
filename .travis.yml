@@ -7,4 +7,5 @@ script:
     - "./gradlew clean build -i --continue"
 
 after_success:
+    - "openssl aes-256-cbc -K $encrypted_57c3fa5caa44_key -iv $encrypted_57c3fa5caa44_iv -in humane.gpg.enc -out humane.gpg -d"
     - "./gradlew publish"

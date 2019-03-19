@@ -6,6 +6,9 @@ bin/
 .classpath
 .project
 
+*.gpg
+/humane.asc
+
 # Ignore Gradle GUI config
 gradle-app.setting
 

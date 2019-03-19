@@ -38,7 +38,7 @@ allprojects {
     ext {
         versionMajor = '0'
         versionMinor = '1'
-        versionPatch = '3'
+        versionPatch = '4'
         String travisBuildNumber = System.getenv('TRAVIS_BUILD_NUMBER')
        
         if (travisBuildNumber != null) {
@@ -54,9 +54,14 @@ allprojects {
   
     group = 'com.offbeatmind.humane'
     version = "${versionMajor}.${versionMinor}.${versionPatch}${versionSuffix}" 
-  
+
+    apply plugin: 'signing'  
     apply plugin: 'maven-publish'
-  
+    
+    ext."signing.keyId" = 'BC9180CB'
+    ext."signing.password" = System.getenv('RSA_PASSPHRASE')
+    ext."signing.secretKeyRingFile" = rootProject.file('humane.gpg')
+    
     plugins.withType(JavaPlugin) {
         task sourcesJar(type: Jar) {
             from sourceSets.main.allJava
@@ -128,6 +133,10 @@ allprojects {
                         asNode().children().last() + pomConfig 
                     }
                 }
+            }
+            
+            signing {
+                sign publishing.publications.maven
             }
         }
     }
