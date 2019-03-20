@@ -1,4 +1,4 @@
-/.gradle/
+.gradle/
 /buildSrc/.gradle/
 /.build-cache/
 build/

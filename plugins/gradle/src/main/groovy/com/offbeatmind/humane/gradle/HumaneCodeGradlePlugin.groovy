@@ -16,7 +16,9 @@ public class HumaneCodeGradlePlugin implements Plugin<Project> {
         if (hasSupportedLanguages(project)) {
             throw new GradleException("Cannot apply this plugin before supported language plugins.");
         }
-        applyHumaneCodeStyle(project);
+        project.afterEvaluate {
+            applyHumaneCodeStyle(project);
+        }
     }
     
     private boolean hasSupportedLanguages(Project project) {
@@ -30,8 +32,7 @@ public class HumaneCodeGradlePlugin implements Plugin<Project> {
     }
 
     void applyHumaneCodeStyle(Project project) {
-        if (project.plugins.contains(this)) return;
-        
+        if (project.extensions.findByName('humaneCode') != null) return;
 
         def extension = project.extensions.create('humaneCode', HumaneCodeExtension);
         
@@ -39,7 +40,9 @@ public class HumaneCodeGradlePlugin implements Plugin<Project> {
             group        'Verification'
             description  'Checks all code for humane formatting.'
         }
-        
+        Task checkTask = project.tasks.findByName('check');
+        if (checkTask != null) checkTask.dependsOn thisCheckTask
+
         Task thisFixTask = project.task(TASK_NAME_PREFIX + 'Fix') {
             group        'Style'
             description  'Fixes code style/formatting errors.'
@@ -50,12 +53,14 @@ public class HumaneCodeGradlePlugin implements Plugin<Project> {
         
         // Apply to relevant subprojects
         final HumaneCodeGradlePlugin thisPlugin = this;
-        final HumaneCodeGradlePlugin thisProject = this;
-        
+        final Project thisProject = project;
+
         for (Project childProject: project.getChildProjects().values()) {
-            if (hasSupportedLanguages(childProject)) {
-                applyHumaneCodeStyle(childProject);
-                relateTasks(thisProject, childProject);
+            childProject.afterEvaluate {
+                if (thisPlugin.hasSupportedLanguages(childProject)) {
+                    applyHumaneCodeStyle(childProject);
+                    relateTasks(thisProject, childProject);
+                }
             }
         }
     }
@@ -82,7 +87,7 @@ public class HumaneCodeGradlePlugin implements Plugin<Project> {
     }
     
     private void configureJavaTask(Task javaTask, SourceSet sourceSet, boolean fixErrors) {
-        javaTask {
+        javaTask.configure {
             inputs.files sourceSet.allJava
             
             doLast {
@@ -104,7 +109,7 @@ public class HumaneCodeGradlePlugin implements Plugin<Project> {
             final String taskName = childTask.getName();
             
             if (taskName.startsWith(TASK_NAME_PREFIX)) {
-                Task parentTask = parentProject.getTasks().getByName(taskName);
+                Task parentTask = parentProject.getTasks().findByName(taskName);
                 
                 if (parentTask == null) {
                     parentTask = parentProject.task(taskName) {

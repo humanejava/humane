@@ -1,0 +1,8 @@
+buildscript {
+    dependencies {
+        classpath fileTree(dir: '../build/libs', include: ['*.jar'], exclude: ['*-sources.jar', '*-javadoc.jar', '*-groovydoc.jar'])
+        classpath fileTree(dir: '../../../tool/build/libs', include: ['*.jar'], exclude: ['*-sources.jar', '*-javadoc.jar', '*-groovydoc.jar']) 
+    }
+}
+
+apply plugin: 'com.offbeatmind.humane.gradle'
