@@ -10,4 +10,4 @@ after_success:
     - "ls -al humane*"
     - "openssl aes-256-cbc -K $encrypted_bf33cf2bac64_key -iv $encrypted_bf33cf2bac64_iv -in humane.gpg.enc -out humane.gpg -d"
     - "ls -al humane*"
-    - "./gradlew --info --console=plain publish"
+    - "./gradlew --no-daemon --info --console=plain publish"
