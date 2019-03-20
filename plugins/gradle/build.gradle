@@ -23,8 +23,8 @@ gradlePlugin {
 pluginBundle {
     website = 'https://github.com/humanejava/humane'
     vcsUrl = 'https://github.com/humanejava/humane'
-    description = 'This project brings rational and humane coding style (formatting) aid and enforcement tools, starting with Java and, with welcome help of others, other languages.'
-    tags = ['check', 'style', 'validation', 'format', 'java']
+    description = '[EARLY ALPHA!] This project brings rational and humane coding style (formatting) aid and enforcement tools, starting with Java and, with welcome help of others, other languages.'
+    tags = ['check', 'style', 'validation', 'format', 'formatter', 'java', 'code style', 'coding standards', 'best practices', 'indentation']
   
     plugins {
         humaneCodeStylePlugin {

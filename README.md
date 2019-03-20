@@ -34,11 +34,33 @@ This project aims to solve that by accepting the following:
    
 ... and by revisiting some hard cases where existing formats seem to give up.
 
-## Details
+## Supported languages
 
-For details see the language-specific README:
+At present the following language(s) are supported. Desire is to support more but help is needed and very welcome.
 
- - [Java](lang/java/README.md)  
+  - [Java](lang/java/README.md)  
+ 
+## Plugins
+
+At present the following plugins for other tools are available:
+
+  - [Gradle](plugins/gradle/README.md)
+
+## Running from command line
+
+To run from command line use:
+```
+    java -jar tool-<version>.jar
+```
+to get the basic help screen but please note that the development just started and not all switches are functional - config files, format fixing and report files are not implemented yet.
+
+To run checks run:
+```
+    java -jar tool-<version>.jar <source-directory-path>
+```
+
+
+
 
 ## License
 
