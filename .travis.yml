@@ -3,8 +3,15 @@ language: java
 jdk:
     - oraclejdk8
 
-script:
+git:
+    depth: false
+
+install:
+    - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+    - git fetch --unshallow --tags
     - "git status"
+
+script:
     - "./gradlew build -i --continue"
 
 after_success:
