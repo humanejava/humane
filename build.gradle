@@ -5,13 +5,13 @@ plugins {
 ext {
     detailedVersion = versionDetails(prefix: 'version-');
     logger.lifecycle '--------------------------------------------------------'
-    logger.lifecycle 'Version from tag:    ' + detailedVersion.description()
+    logger.lifecycle 'Version from tag:    ' + detailedVersion.lastTag
     logger.lifecycle 'Git branch name:     ' + detailedVersion.branchName
     logger.lifecycle 'Git commit distance: ' + detailedVersion.commitDistance
     logger.lifecycle 'Clean (no changes)?: ' + detailedVersion.isClean()
     logger.lifecycle '--------------------------------------------------------'
 
-    versionBase = "${detailedVersion.description() ?: '0.0'}.${detailedVersion.commitDistance}"
+    versionBase = "${detailedVersion.lastTag ?: '0.0'}.${detailedVersion.commitDistance}"
     if (!detailedVersion.isClean()) versionBase = versionBase + '+'
     
     
@@ -44,7 +44,7 @@ ext {
 }
 
 version = versionBase + buildNumberInfix + versionBranchInfix + snapshotSuffix;
-logger.lifecycle 'Complete version:    ' + snapshotSuffix
+logger.lifecycle 'Complete version:    ' + version
 logger.lifecycle '--------------------------------------------------------'
 
 def pomConfig = {
