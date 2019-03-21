@@ -4,9 +4,17 @@ plugins {
 
 ext {
     detailedVersion = versionDetails(prefix: 'version-');
+    logger.lifecycle '--------------------------------------------------------'
+    logger.lifecycle 'Version from tag:    ' + detailedVersion.description()
+    logger.lifecycle 'Git branch name:     ' + detailedVersion.branchName
+    logger.lifecycle 'Git commit distance: ' + detailedVersion.commitDistance
+    logger.lifecycle 'Clean (no changes)?: ' + detailedVersion.isClean()
+    logger.lifecycle '--------------------------------------------------------'
+
     versionBase = "${detailedVersion.description() ?: '0.0'}.${detailedVersion.commitDistance}"
     if (!detailedVersion.isClean()) versionBase = versionBase + '+'
-
+    
+    
     versionBranchInfix = detailedVersion.branchName ?: 'localdev';
     if ('master'.equals(versionBranchInfix)) {
         versionBranchInfix = ''
@@ -27,11 +35,17 @@ ext {
         buildNumberInfix = ''
         snapshotSuffix = '-SNAPSHOT'
     }
+
+    logger.lifecycle 'Version base:        ' + versionBase
+    logger.lifecycle 'Version branch id:   ' + versionBranchInfix
+    logger.lifecycle 'Build number infix:  ' + buildNumberInfix
+    logger.lifecycle 'Snapshot suffix:     ' + snapshotSuffix
+    logger.lifecycle '--------------------------------------------------------'
 }
 
 version = versionBase + buildNumberInfix + versionBranchInfix + snapshotSuffix;
-
-logger.lifecycle "Building version: ${version}"
+logger.lifecycle 'Complete version:    ' + snapshotSuffix
+logger.lifecycle '--------------------------------------------------------'
 
 def pomConfig = {
     organization {
