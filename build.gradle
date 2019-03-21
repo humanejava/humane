@@ -1,3 +1,38 @@
+plugins {
+    id 'com.palantir.git-version' version '0.11.0'
+}
+
+ext {
+    detailedVersion = versionDetails(prefix: 'version-');
+    versionBase = "${detailedVersion.description() ?: '0.0'}.${detailedVersion.commitDistance}"
+    if (!detailedVersion.isClean()) versionBase = versionBase + '+'
+
+    versionBranchInfix = detailedVersion.branchName ?: 'localdev';
+    if ('master'.equals(versionBranchInfix)) {
+        versionBranchInfix = ''
+    } else {
+        versionBranchInfix = '.' + versionBranchInfix;
+    }
+
+    String travisBuildNumber = System.getenv('TRAVIS_BUILD_NUMBER')
+   
+    if (travisBuildNumber != null) {
+        snapshotBuild = false
+        buildNumber = travisBuildNumber
+        buildNumberInfix = ".${buildNumber}"
+        snapshotSuffix = ''
+    } else {
+        snapshotBuild = true
+        buildNumber = null
+        buildNumberInfix = ''
+        snapshotSuffix = '-SNAPSHOT'
+    }
+}
+
+version = versionBase + buildNumberInfix + versionBranchInfix + snapshotSuffix;
+
+logger.lifecycle "Building version: ${version}"
+
 def pomConfig = {
     organization {
         name 'Off-Beat Mind'
@@ -34,26 +69,9 @@ allprojects {
     repositories {
        mavenCentral()
     }
-  
-    ext {
-        versionMajor = '0'
-        versionMinor = '1'
-        versionPatch = '4'
-        String travisBuildNumber = System.getenv('TRAVIS_BUILD_NUMBER')
-       
-        if (travisBuildNumber != null) {
-            snapshotBuild = false
-            buildNumber = travisBuildNumber
-            versionSuffix = ".${buildNumber}"
-        } else {
-            snapshotBuild = true
-            buildNumber = null
-            versionSuffix = '-SNAPSHOT'
-        }
-    }
-  
+
     group = 'com.offbeatmind.humane'
-    version = "${versionMajor}.${versionMinor}.${versionPatch}${versionSuffix}" 
+    version = rootProject.version
 
     apply plugin: 'signing'  
     apply plugin: 'maven-publish'
@@ -108,33 +126,12 @@ allprojects {
                             fromResolutionResult()
                         }
                     }
-                    pom.withXml {
-//                        def dependenciesNode = asNode().getAt("dependencies")[0]
-//                        if (dependenciesNode == null) {
-//                            dependenciesNode = asNode().appendNode('dependencies')
-//                        }
-//                        
-//                        configurations.implementation.allDependencies.each {
-//                            def dependencyNode = dependenciesNode.appendNode('dependency')
-//                            dependencyNode.appendNode('groupId', it.group)
-//                            dependencyNode.appendNode('artifactId', it.name)
-//                            dependencyNode.appendNode('version', it.version)
-//                            dependencyNode.appendNode('scope', 'compile')
-//                        }
-//                        
-//                        configurations.runtimeOnly.allDependencies.each {
-//                            def dependencyNode = dependenciesNode.appendNode('dependency')
-//                            dependencyNode.appendNode('groupId', it.group)
-//                            dependencyNode.appendNode('artifactId', it.name)
-//                            dependencyNode.appendNode('version', it.version)
-//                            dependencyNode.appendNode('scope', 'runtime')
-//                        }
-//                          
+                    pom.withXml {                       
                         asNode().children().last() + pomConfig 
                     }
                 }
             }
-            
+
             signing {
                 sign publishing.publications.maven
             }
