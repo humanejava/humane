@@ -1,5 +1,13 @@
 package com.offbeatmind.humane.core;
 
+/**
+ * Specifies the place in the source file where the code is in terms of
+ * the starting and ending {@linkplain CodeLocation locations}
+ * (line and column numbers).
+ * 
+ * @author humanejava
+ *
+ */
 public class CodeRange implements Comparable<CodeRange> {
     private final CodeLocation start;
     private final CodeLocation end;

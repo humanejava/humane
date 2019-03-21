@@ -1,5 +1,13 @@
 package com.offbeatmind.humane.core;
 
+/**
+ * Specifies a location of code inside the source file (line and column number).
+ * 
+ * @see CodeRange
+ * 
+ * @author humanejava
+ *
+ */
 public class CodeLocation implements Comparable<CodeLocation> {
     private final int lineNumber;
     private final int columnNumber;

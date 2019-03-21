@@ -37,8 +37,8 @@ ext {
     }
 
     logger.lifecycle 'Version base:        ' + versionBase
-    logger.lifecycle 'Version branch id:   ' + versionBranchInfix
     logger.lifecycle 'Build number infix:  ' + buildNumberInfix
+    logger.lifecycle 'Version branch id:   ' + versionBranchInfix
     logger.lifecycle 'Snapshot suffix:     ' + snapshotSuffix
     logger.lifecycle '--------------------------------------------------------'
 }

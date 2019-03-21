@@ -29,14 +29,15 @@ public class JavaLanguageProcessor extends LanguageProcessor<JavaSourceTree, Jav
     }
     
     @Override
-    public void process(boolean fixErrors, Collection<JavaSourceTree> sourceTrees) throws IOException {
+    public boolean process(boolean fixErrors, Collection<JavaSourceTree> sourceTrees) throws IOException {
         
+    	final boolean[] success = new boolean[] { true };
+    	
         for (JavaSourceTree sourceTree: sourceTrees) {
             sourceTree.acceptFileVisitor(new Consumer<JavaFile>() {
     
                 @Override
                 public void accept(JavaFile f) {
-                    (new LayoutChecker(f)).process(fixErrors);
                     (new IfElseBracesChecker(f)).process(fixErrors);
                     (new WhileLoopBracesChecker(f)).process(fixErrors);
                     (new DoWhileLoopBracesChecker(f)).process(fixErrors);
@@ -49,10 +50,14 @@ public class JavaLanguageProcessor extends LanguageProcessor<JavaSourceTree, Jav
                     (new BasicWhitespaceChecker(f)).process(fixErrors);
                     (new ItemsPerLineChecker(f)).process(fixErrors);
                     (new AnnotationLayoutChecker(f)).process(fixErrors);
+                    
+                    if (f.hasViolations()) success[0] = false;
     
                     f.printViolations();
                 }
             });
         }
+        
+        return success[0];
     }
 }

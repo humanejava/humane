@@ -4,6 +4,14 @@ plugins {
     id 'groovy'
 }
 
+tasks.withType(Javadoc).all { 
+    enabled = false
+}
+
+tasks.withType(Groovydoc).all { 
+    enabled = false
+}
+
 dependencies {
     implementation localGroovy()
     implementation project(':core')

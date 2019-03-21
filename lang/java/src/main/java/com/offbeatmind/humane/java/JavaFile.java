@@ -49,7 +49,7 @@ public class JavaFile extends SourceFile {
         this.unitName = fileName.substring(0, fileName.length() - ".java".length());
 
         JavaParser parser = new JavaParser(config);
-        ParseResult<CompilationUnit> result = parser.parse(getSource());
+        ParseResult<CompilationUnit> result = parser.parse(getSourceText());
 
         if (!result.isSuccessful()) {
             for (Problem p : result.getProblems()) {

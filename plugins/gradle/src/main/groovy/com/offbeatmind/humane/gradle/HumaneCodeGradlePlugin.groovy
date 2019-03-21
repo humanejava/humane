@@ -99,7 +99,11 @@ public class HumaneCodeGradlePlugin implements Plugin<Project> {
                         sourceTrees.add(new JavaSourceTree(dir));
                     }
                 }
-                JavaLanguageProcessor.INSTANCE.process(fixErrors, sourceTrees);
+                
+                final boolean success = JavaLanguageProcessor.INSTANCE.process(fixErrors, sourceTrees);
+                if (!success && !ignoreFailures) {
+                    throw new GradleException("There were violations.");
+                }
             }
         }
     }

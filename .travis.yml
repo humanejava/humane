@@ -19,6 +19,7 @@ install:
 
 script:
     - "./gradlew build -i --continue"
+    - "cd plugins/gradle/test-multiproject/ && ./validateSelf.sh"
 
 after_success:
     - ls -al humane.gpg*

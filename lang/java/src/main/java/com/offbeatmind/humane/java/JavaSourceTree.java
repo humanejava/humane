@@ -18,7 +18,7 @@ public class JavaSourceTree extends SourceTree<JavaFile> {
     }
 
     @Override
-    protected boolean isSupportedFile(File file) throws IOException {
+    protected boolean isSupportedFile(File file, List<String> recursePath) throws IOException {
         return file.getName().toLowerCase().endsWith(".java");
     }
     
