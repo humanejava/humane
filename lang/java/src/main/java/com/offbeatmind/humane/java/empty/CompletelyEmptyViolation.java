@@ -1,9 +1,9 @@
 package com.offbeatmind.humane.java.empty;
 
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.SourceElement;
 
-public class CompletelyEmptyViolation extends Violation {
+public class CompletelyEmptyViolation extends JavaViolation {
 
     protected CompletelyEmptyViolation(SourceElement violatingElement) {
         super(violatingElement);

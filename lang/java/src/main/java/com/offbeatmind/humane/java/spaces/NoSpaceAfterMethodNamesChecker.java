@@ -9,9 +9,9 @@ import com.github.javaparser.ast.expr.ArrayCreationExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.stmt.ExplicitConstructorInvocationStmt;
-import com.offbeatmind.humane.core.JavaFile;
-import com.offbeatmind.humane.core.NodeSourceElement;
+import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
+import com.offbeatmind.humane.java.NodeSourceElement;
 
 public class NoSpaceAfterMethodNamesChecker extends JavaFileProcessor {
 

@@ -2,14 +2,16 @@ package com.offbeatmind.humane.tool;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.offbeatmind.humane.core.LanguageProcessor;
+import com.offbeatmind.humane.core.SourceFile;
 import com.offbeatmind.humane.core.SourceTree;
 import com.offbeatmind.humane.java.JavaLanguageProcessor;
 
 public class Main {
     
-    private static LanguageProcessor currentLanguage = JavaLanguageProcessor.INSTANCE;
+    private static LanguageProcessor<?,?> currentLanguage = JavaLanguageProcessor.INSTANCE;
 
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
@@ -94,9 +96,11 @@ public class Main {
         
     }
 
-    private static void processPath(String arg) throws IOException {
-        SourceTree sourceTree = new SourceTree(new File(arg));
-        currentLanguage.process(false, sourceTree);
+    private static <T extends SourceTree<F>, F extends SourceFile, L extends LanguageProcessor<T, F>>  void processPath(String arg) throws IOException {
+        @SuppressWarnings("unchecked")
+        final L lang = (L)currentLanguage;
+        final T sourceTree = lang.constructSourceTree(new File(arg));
+        lang.process(false, Arrays.asList(sourceTree));
     }
 
     private static void help() {

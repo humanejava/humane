@@ -1,4 +1,4 @@
-package com.offbeatmind.humane.core;
+package com.offbeatmind.humane.java;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,21 +17,25 @@ import com.github.javaparser.Range;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.type.UnknownType;
+import com.offbeatmind.humane.core.SourceFile;
 
 public class JavaFile extends SourceFile {
-
+    
+    private final JavaSourceTree sourceTree;
     private final List<String> packagePath;
     private final String expectedPackage;
     private final String unitName;
     private final CompilationUnit compilationUnit;
 
-    public JavaFile(SourceTree sourceTree, List<String> packagePath, File sourceFile) throws IOException {
+    public JavaFile(JavaSourceTree sourceTree, List<String> packagePath, File sourceFile) throws IOException {
         this(sourceTree, packagePath, sourceFile, getDefaultParserConfiguration());
     }
 
-    private JavaFile(SourceTree sourceTree, List<String> packagePath, File sourceFile, ParserConfiguration config)
+    private JavaFile(JavaSourceTree sourceTree, List<String> packagePath, File sourceFile, ParserConfiguration config)
     throws IOException {
-        super(sourceTree, sourceFile);
+        super(sourceFile);
+        
+        this.sourceTree = sourceTree;
 
         this.packagePath = Collections.unmodifiableList(packagePath);
         StringBuilder pp = new StringBuilder();
@@ -57,6 +61,10 @@ public class JavaFile extends SourceFile {
         System.out.println("Parsed:  " + sourceFile.getPath());
 
         organizeElements();
+    }
+    
+    public JavaSourceTree getSourceTree() {
+        return sourceTree;
     }
 
     private static ParserConfiguration getDefaultParserConfiguration() {

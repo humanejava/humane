@@ -1,9 +1,9 @@
 package com.offbeatmind.humane.java.layout;
 
-import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.NodeSourceElement;
 
-public class VerticalSeparationViolation extends Violation {
+public class VerticalSeparationViolation extends JavaViolation {
 
     private final NodeSourceElement<?> previousNode;
 

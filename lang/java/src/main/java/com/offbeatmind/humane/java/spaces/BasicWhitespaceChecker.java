@@ -28,11 +28,11 @@ import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.SwitchEntry;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.type.TypeParameter;
-import com.offbeatmind.humane.core.JavaFile;
-import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.TokenSourceElement;
+import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
+import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.SourceElement;
+import com.offbeatmind.humane.java.TokenSourceElement;
 
 public class BasicWhitespaceChecker extends JavaFileProcessor {
 

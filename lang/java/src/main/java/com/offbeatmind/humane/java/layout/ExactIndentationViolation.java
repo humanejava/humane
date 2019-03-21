@@ -1,6 +1,6 @@
 package com.offbeatmind.humane.java.layout;
 
-import com.offbeatmind.humane.core.SourceElement;
+import com.offbeatmind.humane.java.SourceElement;
 
 public class ExactIndentationViolation extends IndentationViolation {
 

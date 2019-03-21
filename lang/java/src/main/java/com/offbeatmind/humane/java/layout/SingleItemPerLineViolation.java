@@ -1,11 +1,11 @@
 package com.offbeatmind.humane.java.layout;
 
 import com.github.javaparser.ast.Node;
-import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.SourceElement;
 
-public class SingleItemPerLineViolation extends Violation {
+public class SingleItemPerLineViolation extends JavaViolation {
 
     private final NodeSourceElement<Node> preexistingNode;
 

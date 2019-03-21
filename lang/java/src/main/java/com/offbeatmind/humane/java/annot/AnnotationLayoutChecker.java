@@ -9,10 +9,10 @@ import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
-import com.offbeatmind.humane.core.JavaFile;
-import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.core.SourceElement;
+import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
+import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.SourceElement;
 
 public class AnnotationLayoutChecker extends JavaFileProcessor {
 

@@ -2,10 +2,10 @@ package com.offbeatmind.humane.java.layout;
 
 import java.util.TreeSet;
 
-import com.offbeatmind.humane.core.TokenSourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.TokenSourceElement;
 
-public class ClosingMoreThanOneOtherStartLineViolation extends Violation {
+public class ClosingMoreThanOneOtherStartLineViolation extends JavaViolation {
 
     private final TreeSet<Integer> startLinesOfScopesEnded;
 

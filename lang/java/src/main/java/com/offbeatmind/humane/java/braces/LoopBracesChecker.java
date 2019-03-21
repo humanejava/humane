@@ -2,9 +2,9 @@ package com.offbeatmind.humane.java.braces;
 
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.stmt.Statement;
-import com.offbeatmind.humane.core.JavaFile;
-import com.offbeatmind.humane.core.NodeSourceElement;
+import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
+import com.offbeatmind.humane.java.NodeSourceElement;
 
 public abstract class LoopBracesChecker extends JavaFileProcessor {
 

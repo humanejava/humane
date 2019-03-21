@@ -4,8 +4,8 @@ import java.util.function.Consumer;
 
 import com.github.javaparser.ast.stmt.DoStmt;
 import com.github.javaparser.ast.stmt.Statement;
-import com.offbeatmind.humane.core.JavaFile;
-import com.offbeatmind.humane.core.NodeSourceElement;
+import com.offbeatmind.humane.java.JavaFile;
+import com.offbeatmind.humane.java.NodeSourceElement;
 
 public class DoWhileLoopBracesChecker extends LoopBracesChecker {
 

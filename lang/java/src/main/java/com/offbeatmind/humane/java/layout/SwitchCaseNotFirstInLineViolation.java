@@ -1,9 +1,9 @@
 package com.offbeatmind.humane.java.layout;
 
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.SourceElement;
 
-public class SwitchCaseNotFirstInLineViolation extends Violation {
+public class SwitchCaseNotFirstInLineViolation extends JavaViolation {
 
     protected SwitchCaseNotFirstInLineViolation(SourceElement violatingElement) {
         super(violatingElement);

@@ -1,4 +1,4 @@
-package com.offbeatmind.humane.core;
+package com.offbeatmind.humane.java;
 
 import com.github.javaparser.JavaToken;
 import com.github.javaparser.TokenTypes;

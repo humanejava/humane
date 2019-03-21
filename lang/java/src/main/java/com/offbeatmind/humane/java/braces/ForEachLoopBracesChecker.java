@@ -4,10 +4,10 @@ import java.util.function.Consumer;
 
 import com.github.javaparser.ast.stmt.ForEachStmt;
 import com.github.javaparser.ast.stmt.Statement;
-import com.offbeatmind.humane.core.JavaFile;
-import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.TokenSourceElement;
+import com.offbeatmind.humane.java.JavaFile;
+import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.SourceElement;
+import com.offbeatmind.humane.java.TokenSourceElement;
 
 public class ForEachLoopBracesChecker extends LoopBracesChecker {
 

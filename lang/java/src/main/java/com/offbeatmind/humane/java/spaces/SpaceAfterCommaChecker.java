@@ -1,6 +1,6 @@
 package com.offbeatmind.humane.java.spaces;
 
-import com.offbeatmind.humane.core.JavaFile;
+import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
 
 public class SpaceAfterCommaChecker extends JavaFileProcessor {

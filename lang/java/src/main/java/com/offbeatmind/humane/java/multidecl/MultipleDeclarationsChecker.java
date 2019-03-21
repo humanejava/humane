@@ -6,9 +6,9 @@ import java.util.function.Consumer;
 import com.github.javaparser.Position;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.VariableDeclarator;
-import com.offbeatmind.humane.core.JavaFile;
-import com.offbeatmind.humane.core.NodeSourceElement;
+import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
+import com.offbeatmind.humane.java.NodeSourceElement;
 
 public class MultipleDeclarationsChecker extends JavaFileProcessor {
 

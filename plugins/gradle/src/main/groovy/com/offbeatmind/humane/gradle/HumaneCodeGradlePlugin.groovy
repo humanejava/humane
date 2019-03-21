@@ -6,7 +6,7 @@ import org.gradle.api.Project;
 import org.gradle.api.Task;
 import org.gradle.api.tasks.SourceSet;
 
-import com.offbeatmind.humane.core.SourceTree
+import com.offbeatmind.humane.java.JavaSourceTree
 import com.offbeatmind.humane.java.JavaLanguageProcessor
 
 public class HumaneCodeGradlePlugin implements Plugin<Project> {
@@ -96,7 +96,7 @@ public class HumaneCodeGradlePlugin implements Plugin<Project> {
                 
                 for (File dir: sourceSet.allJava.srcDirs) {
                     if (dir.exists()) {
-                        sourceTrees.add(new SourceTree(dir));
+                        sourceTrees.add(new JavaSourceTree(dir));
                     }
                 }
                 JavaLanguageProcessor.INSTANCE.process(fixErrors, sourceTrees);

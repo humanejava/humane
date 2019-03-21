@@ -3,9 +3,9 @@ package com.offbeatmind.humane.java.imports;
 import java.util.function.Consumer;
 
 import com.github.javaparser.ast.ImportDeclaration;
-import com.offbeatmind.humane.core.JavaFile;
-import com.offbeatmind.humane.core.NodeSourceElement;
+import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
+import com.offbeatmind.humane.java.NodeSourceElement;
 
 public class ImportsChecker extends JavaFileProcessor {
     private static final boolean ALLOW_STATIC_IMPORTS = Boolean.getBoolean("allowStaticImports");

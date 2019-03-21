@@ -1,9 +1,9 @@
 package com.offbeatmind.humane.java.spaces;
 
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.SourceElement;
 
-public class InappropriateIdentifierSpacingViolation extends Violation {
+public class InappropriateIdentifierSpacingViolation extends JavaViolation {
 
     public InappropriateIdentifierSpacingViolation(SourceElement violatingElement) {
         super(violatingElement);

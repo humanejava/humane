@@ -1,9 +1,9 @@
 package com.offbeatmind.humane.java.imports;
 
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.SourceElement;
 
-public class StaticImportViolation extends Violation {
+public class StaticImportViolation extends JavaViolation {
 
     protected StaticImportViolation(SourceElement violatingElement) {
         super(violatingElement);

@@ -1,9 +1,9 @@
 package com.offbeatmind.humane.java.multidecl;
 
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.SourceElement;
 
-public class MultipleDeclarationsViolation extends Violation {
+public class MultipleDeclarationsViolation extends JavaViolation {
 
     protected MultipleDeclarationsViolation(SourceElement violatingElement) {
         super(violatingElement);

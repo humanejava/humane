@@ -1,9 +1,9 @@
 package com.offbeatmind.humane.java.compilationunit;
 
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.SourceElement;
 
-public class CompilationUnitContentViolation extends Violation {
+public class CompilationUnitContentViolation extends JavaViolation {
 
     protected CompilationUnitContentViolation(SourceElement violatingElement) {
         super(violatingElement);

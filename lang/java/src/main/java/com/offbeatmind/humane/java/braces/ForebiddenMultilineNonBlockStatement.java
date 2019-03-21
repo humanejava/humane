@@ -1,9 +1,9 @@
 package com.offbeatmind.humane.java.braces;
 
-import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.NodeSourceElement;
 
-public class ForebiddenMultilineNonBlockStatement extends Violation {
+public class ForebiddenMultilineNonBlockStatement extends JavaViolation {
 
     protected ForebiddenMultilineNonBlockStatement(NodeSourceElement<?> violatingElement) {
         super(violatingElement);

@@ -1,7 +1,8 @@
-package com.offbeatmind.humane.core;
+package com.offbeatmind.humane.java;
 
 import com.github.javaparser.ast.DataKey;
 import com.github.javaparser.ast.Node;
+import com.offbeatmind.humane.core.SourceFile;
 
 class JavaFileLocation {
     static final DataKey<JavaFileLocation> DATAKEY = new DataKey<JavaFileLocation>() {

@@ -4,8 +4,8 @@ import java.util.function.Consumer;
 
 import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.WhileStmt;
-import com.offbeatmind.humane.core.JavaFile;
-import com.offbeatmind.humane.core.NodeSourceElement;
+import com.offbeatmind.humane.java.JavaFile;
+import com.offbeatmind.humane.java.NodeSourceElement;
 
 public class WhileLoopBracesChecker extends LoopBracesChecker {
 

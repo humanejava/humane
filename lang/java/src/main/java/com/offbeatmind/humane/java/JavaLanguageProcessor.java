@@ -1,11 +1,11 @@
 package com.offbeatmind.humane.java;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.function.Consumer;
 
-import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.LanguageProcessor;
-import com.offbeatmind.humane.core.SourceTree;
 import com.offbeatmind.humane.java.annot.AnnotationLayoutChecker;
 import com.offbeatmind.humane.java.braces.DoWhileLoopBracesChecker;
 import com.offbeatmind.humane.java.braces.ForEachLoopBracesChecker;
@@ -20,14 +20,18 @@ import com.offbeatmind.humane.java.layout.LayoutChecker;
 import com.offbeatmind.humane.java.multidecl.MultipleDeclarationsChecker;
 import com.offbeatmind.humane.java.spaces.BasicWhitespaceChecker;
 
-public class JavaLanguageProcessor extends LanguageProcessor {
+public class JavaLanguageProcessor extends LanguageProcessor<JavaSourceTree, JavaFile> {
 
     public static final JavaLanguageProcessor INSTANCE = new JavaLanguageProcessor();
     
+    public final JavaSourceTree constructSourceTree(File file) {
+        return new JavaSourceTree(file);
+    }
+    
     @Override
-    public void process(boolean fixErrors, SourceTree... sourceTrees) throws IOException {
+    public void process(boolean fixErrors, Collection<JavaSourceTree> sourceTrees) throws IOException {
         
-        for (SourceTree sourceTree: sourceTrees) {
+        for (JavaSourceTree sourceTree: sourceTrees) {
             sourceTree.acceptFileVisitor(new Consumer<JavaFile>() {
     
                 @Override

@@ -1,11 +1,11 @@
 package com.offbeatmind.humane.java.annot;
 
 import com.github.javaparser.ast.expr.AnnotationExpr;
-import com.offbeatmind.humane.core.NodeSourceElement;
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.SourceElement;
 
-public class SingleAnnotationPerLineViolation extends Violation {
+public class SingleAnnotationPerLineViolation extends JavaViolation {
 
     private final NodeSourceElement<AnnotationExpr> preexistingAnnotation;
 

@@ -1,4 +1,4 @@
-package com.offbeatmind.humane.core;
+package com.offbeatmind.humane.java;
 
 import java.util.Optional;
 

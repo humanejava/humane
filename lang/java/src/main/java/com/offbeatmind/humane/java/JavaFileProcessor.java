@@ -1,6 +1,5 @@
 package com.offbeatmind.humane.java;
 
-import com.offbeatmind.humane.core.JavaFile;
 import com.offbeatmind.humane.core.SourceFile;
 import com.offbeatmind.humane.core.Violation;
 

@@ -1,9 +1,9 @@
 package com.offbeatmind.humane.java.spaces;
 
-import com.offbeatmind.humane.core.SourceElement;
-import com.offbeatmind.humane.core.Violation;
+import com.offbeatmind.humane.java.JavaViolation;
+import com.offbeatmind.humane.java.SourceElement;
 
-public class WhitespaceMustExistOnExactlyOneSideViolation extends Violation {
+public class WhitespaceMustExistOnExactlyOneSideViolation extends JavaViolation {
 
     public WhitespaceMustExistOnExactlyOneSideViolation(SourceElement violatingElement) {
         super(violatingElement);
