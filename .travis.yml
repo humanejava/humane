@@ -18,8 +18,10 @@ install:
     - git status
 
 script:
-    - "./gradlew build -i --continue"
-    - "cd plugins/gradle/test-multiproject/ && ./validateSelf.sh"
+    - ./gradlew build -i --continue
+    - pushd plugins/gradle/test-multiproject/
+    - ./validateSelf.sh
+    - popd
 
 after_success:
     - ls -al humane.gpg*
