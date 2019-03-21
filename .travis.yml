@@ -10,11 +10,11 @@ install:
     - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
     - git fetch origin --tags
     - git branch -a
-    - git tag-l
+    - git tag -l
     - git status
     - git symbolic-ref --short HEAD || git checkout -b ${TRAVIS_BRANCH}-build $TRAVIS_BRANCH
     - git branch -a
-    - git tag-l
+    - git tag -l
     - git status
 
 script:
