@@ -12,7 +12,7 @@ install:
     - git branch -a
     - git tag -l
     - git status
-    - git symbolic-ref --short HEAD || git checkout -b ${TRAVIS_BRANCH}-build $TRAVIS_BRANCH
+    - git symbolic-ref --short HEAD || git checkout $TRAVIS_BRANCH
     - git branch -a
     - git tag -l
     - git status
