@@ -6,11 +6,17 @@ import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
 import com.offbeatmind.humane.java.NodeSourceElement;
 
-public abstract class LoopBracesChecker extends JavaFileProcessor {
+/**
+ * Base class for loop brace usage processors.
+ * 
+ * @author humanejava
+ *
+ */
+public abstract class LoopBracesProcessor extends JavaFileProcessor {
 
     protected static final Boolean REQUIRE_BRACES_FOR_MULTILINE_LOOPS = false;
 
-    public LoopBracesChecker(JavaFile javaFile) {
+    public LoopBracesProcessor(JavaFile javaFile) {
         super(javaFile);
     }
 

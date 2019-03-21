@@ -7,10 +7,16 @@ import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
 import com.offbeatmind.humane.java.NodeSourceElement;
 
-public class ImportsChecker extends JavaFileProcessor {
+/**
+ * Validates that star (and optionally static) imports aren't used.
+ * 
+ * @author humanejava
+ *
+ */
+public class ImportsProcessor extends JavaFileProcessor {
     private static final boolean ALLOW_STATIC_IMPORTS = Boolean.getBoolean("allowStaticImports");
 
-    public ImportsChecker(JavaFile javaFile) {
+    public ImportsProcessor(JavaFile javaFile) {
         super(javaFile);
     }
 

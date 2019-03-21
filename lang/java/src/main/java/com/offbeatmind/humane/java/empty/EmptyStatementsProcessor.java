@@ -16,13 +16,20 @@ import com.offbeatmind.humane.java.JavaFileProcessor;
 import com.offbeatmind.humane.java.NodeSourceElement;
 import com.offbeatmind.humane.java.SourceElement;
 
-public class EmptyStatementsChecker extends JavaFileProcessor {
+/**
+ * Validates that there are no completely empty blocks
+ * (method bodies, classes, interfaces and enums) without even a comment.
+ * 
+ * @author humanejava
+ *
+ */
+public class EmptyStatementsProcessor extends JavaFileProcessor {
 
     private static final boolean ALLOW_EMPTY_METHOD_BODIES = true;
     private static final boolean ALLOW_EMPTY_CLASSIFIERS = true;
     private static final boolean ALLOW_EMPTY_ENUMS = true;
 
-    public EmptyStatementsChecker(JavaFile javaFile) {
+    public EmptyStatementsProcessor(JavaFile javaFile) {
         super(javaFile);
         // TODO Auto-generated constructor stub
     }

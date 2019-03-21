@@ -7,7 +7,13 @@ import com.github.javaparser.ast.stmt.WhileStmt;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.NodeSourceElement;
 
-public class WhileLoopBracesChecker extends LoopBracesChecker {
+/**
+ * Vaidates that multiline {@code while (...)} statements use braces.
+ * 
+ * @author humanejava
+ *
+ */
+public class WhileLoopBracesChecker extends LoopBracesProcessor {
 
     public WhileLoopBracesChecker(JavaFile javaFile) {
         super(javaFile);

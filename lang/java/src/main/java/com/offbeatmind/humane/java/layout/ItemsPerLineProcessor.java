@@ -16,9 +16,16 @@ import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
 import com.offbeatmind.humane.java.NodeSourceElement;
 
-public class ItemsPerLineChecker extends JavaFileProcessor {
+/**
+ * Validates that there is at most one item per line at any one
+ * given scope/depth.
+ * 
+ * @author humanejava
+ *
+ */
+public class ItemsPerLineProcessor extends JavaFileProcessor {
 
-    public ItemsPerLineChecker(JavaFile javaFile) {
+    public ItemsPerLineProcessor(JavaFile javaFile) {
         super(javaFile);
     }
 

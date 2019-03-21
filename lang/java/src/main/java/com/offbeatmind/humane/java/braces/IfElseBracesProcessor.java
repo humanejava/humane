@@ -9,9 +9,15 @@ import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
 import com.offbeatmind.humane.java.NodeSourceElement;
 
-public class IfElseBracesChecker extends JavaFileProcessor {
+/**
+ * Validates multiline if(-else) constructs use braces. 
+ * 
+ * @author humanejava
+ *
+ */
+public class IfElseBracesProcessor extends JavaFileProcessor {
 
-    public IfElseBracesChecker(JavaFile javaFile) {
+    public IfElseBracesProcessor(JavaFile javaFile) {
         super(javaFile);
         // TODO Auto-generated constructor stub
     }

@@ -10,7 +10,6 @@ import com.offbeatmind.humane.core.SourceTree;
  * Represents a source tree - a walkable directory structure containing source files.
  * @author humanejava
  *
- * @param <T>
  */
 public class JavaSourceTree extends SourceTree<JavaFile> {
     public JavaSourceTree(File rootDir) {

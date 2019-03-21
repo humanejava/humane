@@ -7,9 +7,15 @@ import com.github.javaparser.ast.stmt.Statement;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.NodeSourceElement;
 
-public class DoWhileLoopBracesChecker extends LoopBracesChecker {
+/**
+ * Vaidates that multiline {@code do...while} statements use braces.
+ * 
+ * @author humanejava
+ *
+ */
+public class DoWhileLoopBracesProcessor extends LoopBracesProcessor {
 
-    public DoWhileLoopBracesChecker(JavaFile javaFile) {
+    public DoWhileLoopBracesProcessor(JavaFile javaFile) {
         super(javaFile);
     }
 

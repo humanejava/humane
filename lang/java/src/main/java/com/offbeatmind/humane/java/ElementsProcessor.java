@@ -2,11 +2,18 @@ package com.offbeatmind.humane.java;
 
 import java.util.List;
 
-public abstract class ElementsChecker extends JavaFileProcessor {
+/**
+ * Base class for processors that iterate over
+ * {@linkplain SourceElement source elements}. 
+ * 
+ * @author humanejava
+ *
+ */
+public abstract class ElementsProcessor extends JavaFileProcessor {
 
     private NodeSourceElement<?> currentNode;
 
-    public ElementsChecker(JavaFile javaFile) {
+    public ElementsProcessor(JavaFile javaFile) {
         super(javaFile);
     }
 

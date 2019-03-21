@@ -7,9 +7,16 @@ import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
 import com.offbeatmind.humane.java.NodeSourceElement;
 
-public class CompilationUnitContentChecker extends JavaFileProcessor {
+/**
+ * Validates that there is at most top level one compilation unit
+ * (i.e. class or interface) per file. 
+ * 
+ * @author humanejava
+ *
+ */
+public class CompilationUnitContentProcessor extends JavaFileProcessor {
 
-    public CompilationUnitContentChecker(JavaFile javaFile) {
+    public CompilationUnitContentProcessor(JavaFile javaFile) {
         super(javaFile);
     }
 

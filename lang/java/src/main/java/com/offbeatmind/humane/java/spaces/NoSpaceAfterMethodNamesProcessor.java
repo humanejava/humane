@@ -13,9 +13,15 @@ import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
 import com.offbeatmind.humane.java.NodeSourceElement;
 
-public class NoSpaceAfterMethodNamesChecker extends JavaFileProcessor {
+/**
+ * Vaidates that there are no spaces between method names and their parameters.
+ * 
+ * @author humanejava
+ *
+ */
+public class NoSpaceAfterMethodNamesProcessor extends JavaFileProcessor {
 
-    public NoSpaceAfterMethodNamesChecker(JavaFile javaFile) {
+    public NoSpaceAfterMethodNamesProcessor(JavaFile javaFile) {
         super(javaFile);
     }
 

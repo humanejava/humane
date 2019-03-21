@@ -14,9 +14,15 @@ import com.offbeatmind.humane.java.JavaFileProcessor;
 import com.offbeatmind.humane.java.NodeSourceElement;
 import com.offbeatmind.humane.java.SourceElement;
 
-public class AnnotationLayoutChecker extends JavaFileProcessor {
+/**
+ * Validates that complex annotations are on their own lines.  
+ * 
+ * @author humanejava
+ *
+ */
+public class AnnotationLayoutProcessor extends JavaFileProcessor {
 
-    public AnnotationLayoutChecker(JavaFile javaFile) {
+    public AnnotationLayoutProcessor(JavaFile javaFile) {
         super(javaFile);
     }
 

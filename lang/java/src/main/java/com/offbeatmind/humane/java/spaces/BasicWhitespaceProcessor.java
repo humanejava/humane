@@ -34,7 +34,13 @@ import com.offbeatmind.humane.java.NodeSourceElement;
 import com.offbeatmind.humane.java.SourceElement;
 import com.offbeatmind.humane.java.TokenSourceElement;
 
-public class BasicWhitespaceChecker extends JavaFileProcessor {
+/**
+ * Validates horizontal and vertical spacing.
+ * 
+ * @author humanejava
+ *
+ */
+public class BasicWhitespaceProcessor extends JavaFileProcessor {
 
     private static final boolean ALLOW_UNSPACED_COMMAS_IN_SINGLE_LETTER_TYPE_ARGS = true;
 
@@ -147,7 +153,7 @@ public class BasicWhitespaceChecker extends JavaFileProcessor {
     private WhitespaceExpectation whitespaceExpectation = WhitespaceExpectation.NON_WHITESPACE_REQUIRED;
     private boolean oneSideWhitespaceRequirement = false;
 
-    public BasicWhitespaceChecker(JavaFile javaFile) {
+    public BasicWhitespaceProcessor(JavaFile javaFile) {
         super(javaFile);
     }
 

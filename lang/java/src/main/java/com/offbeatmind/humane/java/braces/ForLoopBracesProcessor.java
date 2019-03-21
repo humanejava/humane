@@ -2,29 +2,35 @@ package com.offbeatmind.humane.java.braces;
 
 import java.util.function.Consumer;
 
-import com.github.javaparser.ast.stmt.ForEachStmt;
+import com.github.javaparser.ast.stmt.ForStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.NodeSourceElement;
 import com.offbeatmind.humane.java.SourceElement;
 import com.offbeatmind.humane.java.TokenSourceElement;
 
-public class ForEachLoopBracesChecker extends LoopBracesChecker {
+/**
+ * Vaidates that multiline {@code for (...;...;...)} statements use braces.
+ * 
+ * @author humanejava
+ *
+ */
+public class ForLoopBracesProcessor extends LoopBracesProcessor {
 
-    public ForEachLoopBracesChecker(JavaFile javaFile) {
+    public ForLoopBracesProcessor(JavaFile javaFile) {
         super(javaFile);
     }
 
     @Override
     public void process(final boolean fixErrors) {
-        javaFile.getCompilationUnit().walk(ForEachStmt.class, new Consumer<ForEachStmt>() {
+        javaFile.getCompilationUnit().walk(ForStmt.class, new Consumer<ForStmt>() {
 
             @Override
-            public void accept(ForEachStmt forStatement) {
+            public void accept(ForStmt forStatement) {
                 final Statement body = forStatement.getBody();
                 if (body.isBlockStmt() || body.isEmptyStmt()) return;
 
-                NodeSourceElement<ForEachStmt> forElement = NodeSourceElement.of(forStatement);
+                NodeSourceElement<ForStmt> forElement = NodeSourceElement.of(forStatement);
                 TokenSourceElement loopControlEnd = null;
 
                 for (SourceElement e : forElement.getElements()) {

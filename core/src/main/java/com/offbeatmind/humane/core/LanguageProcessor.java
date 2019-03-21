@@ -53,7 +53,7 @@ public abstract class LanguageProcessor<T extends SourceTree<F>, F extends Sourc
 	 *     
 	 * @throws IOException
 	 * 
-	 * @see {@link #process(boolean, SourceTree...)}
+	 * @see #process(boolean, SourceTree...)
 	 */
     public abstract boolean process(boolean fixErrors, Collection<T> sourceTrees) throws IOException;
 

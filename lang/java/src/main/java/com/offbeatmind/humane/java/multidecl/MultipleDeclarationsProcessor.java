@@ -10,11 +10,17 @@ import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
 import com.offbeatmind.humane.java.NodeSourceElement;
 
-public class MultipleDeclarationsChecker extends JavaFileProcessor {
+/**
+ * Vaidates at most one variable or field is specified per declaration.
+ * 
+ * @author humanejava
+ *
+ */
+public class MultipleDeclarationsProcessor extends JavaFileProcessor {
 
     private final HashSet<Position> observedPositions;
 
-    public MultipleDeclarationsChecker(JavaFile javaFile) {
+    public MultipleDeclarationsProcessor(JavaFile javaFile) {
         super(javaFile);
         observedPositions = new HashSet<>();
     }

@@ -16,13 +16,20 @@ import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.IfStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.SwitchEntry;
-import com.offbeatmind.humane.java.ElementsChecker;
+import com.offbeatmind.humane.java.ElementsProcessor;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.NodeSourceElement;
 import com.offbeatmind.humane.java.SourceElement;
 import com.offbeatmind.humane.java.TokenSourceElement;
 
-public class LayoutChecker extends ElementsChecker {
+/**
+ * Validates basic layout - indentation, vertical separation, placement of braces and
+ * switch case clauses.
+ * 
+ * @author humanejava
+ *
+ */
+public class LayoutProcessor extends ElementsProcessor {
     private static final Boolean ALLOW_UNINDENTED_LINE_COMMENTS = true;
 
     final int[] requiredIndentations;
@@ -38,7 +45,7 @@ public class LayoutChecker extends ElementsChecker {
     private final TreeSet<Integer> startLinesOfScopesEnded = new TreeSet<>();
     private final LinkedList<TokenSourceElement> violatingScopeEnderTokens = new LinkedList<>();
 
-    public LayoutChecker(JavaFile javaFile) {
+    public LayoutProcessor(JavaFile javaFile) {
         super(javaFile);
 
         requiredIndentations = new int[javaFile.getLineCount() + 1];
