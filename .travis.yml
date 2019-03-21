@@ -4,7 +4,8 @@ jdk:
     - oraclejdk8
 
 script:
-    - "./gradlew clean build -i --continue"
+    - "git status"
+    - "./gradlew build -i --continue"
 
 after_success:
     - ls -al humane.gpg*
