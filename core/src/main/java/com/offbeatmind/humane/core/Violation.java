@@ -18,26 +18,36 @@ public abstract class Violation {
      * @see #getLineNumber()
      * @see #getColumnNumber()
      */
-    public abstract CodeLocation getLocation();
+    public CodeLocation getViolationLocation() {
+        return getViolatingCodeRange().getStart();
+    }
 
+    /**
+     * Returns the location of the beginning of the violation.
+     * 
+     * @see #getLineNumber()
+     * @see #getColumnNumber()
+     */
+    public abstract CodeRange getViolatingCodeRange();
+    
     /**
      * Returns the number of the line where the violation begins.
      * 
      * @see #getColumnNumber()
-     * @see #getLocation()
+     * @see #getViolationLocation()
      */
     public int getLineNumber() {
-    	return getLocation().getLineNumber();
+    	return getViolationLocation().getLineNumber();
     }
 
     /**
      * Returns the number of the column where the violation begins.
      * 
      * @see #getLineNumber()
-     * @see #getLocation()
+     * @see #getViolationLocation()
      */
     public int getColumnNumber() {
-    	return getLocation().getColumnNumber();
+    	return getViolationLocation().getColumnNumber();
     }
 
     /**

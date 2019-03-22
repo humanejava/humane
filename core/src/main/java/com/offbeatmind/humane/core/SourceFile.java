@@ -104,7 +104,7 @@ public abstract class SourceFile {
      * Adds a violation for this file.
      */
     public void addViolation(Violation violation) {
-        violations.put(violation.getLocation(), violation);
+        violations.put(violation.getViolationLocation(), violation);
     }
     
     /**
@@ -119,7 +119,7 @@ public abstract class SourceFile {
      */
     public void printViolations() {
         for (Violation v : violations.values()) {
-            System.err.println(v.getLocation() + ": " + v.getMessage());
+            System.err.println(v.getViolationLocation() + ": " + v.getMessage());
         }
     }
 }

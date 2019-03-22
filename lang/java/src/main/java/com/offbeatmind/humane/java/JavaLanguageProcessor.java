@@ -16,10 +16,15 @@ import com.offbeatmind.humane.java.compilationunit.CompilationUnitContentProcess
 import com.offbeatmind.humane.java.empty.EmptyStatementsProcessor;
 import com.offbeatmind.humane.java.imports.ImportsProcessor;
 import com.offbeatmind.humane.java.layout.ItemsPerLineProcessor;
-import com.offbeatmind.humane.java.layout.LayoutProcessor;
 import com.offbeatmind.humane.java.multidecl.MultipleDeclarationsProcessor;
 import com.offbeatmind.humane.java.spaces.BasicWhitespaceProcessor;
 
+/**
+ * Java implementation of of {@link LanguageProcessor}.
+ * 
+ * @author humanejava
+ *
+ */
 public class JavaLanguageProcessor extends LanguageProcessor<JavaSourceTree, JavaFile> {
 
     public static final JavaLanguageProcessor INSTANCE = new JavaLanguageProcessor();
