@@ -5,7 +5,7 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.EnumDeclaration;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 /**
  * Validates that there is at most top level one compilation unit
@@ -38,7 +38,7 @@ public class CompilationUnitContentProcessor extends JavaFileProcessor {
             }
 
             if (violating) {
-                addViolation(new CompilationUnitContentViolation(NodeSourceElement.of(child)));
+                addViolation(new CompilationUnitContentViolation(NodeElement.of(child)));
             }
         }
     }

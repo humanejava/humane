@@ -8,7 +8,7 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 /**
  * Vaidates at most one variable or field is specified per declaration.
@@ -43,7 +43,7 @@ public class MultipleDeclarationsProcessor extends JavaFileProcessor {
 
         if (position != null) {
             if (!observedPositions.add(position)) {
-                addViolation(new MultipleDeclarationsViolation(NodeSourceElement.of(node)));
+                addViolation(new MultipleDeclarationsViolation(NodeElement.of(node)));
             }
         }
     }

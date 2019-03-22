@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.WhileStmt;
 import com.offbeatmind.humane.java.JavaFile;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 /**
  * Vaidates that multiline {@code while (...)} statements use braces.
@@ -32,7 +32,7 @@ public class WhileLoopBracesChecker extends LoopBracesProcessor {
                 final int bodyEndLine = body.getEnd().get().line;
 
                 if (conditionEndLine != bodyEndLine) {
-                    addViolation(new ForebiddenMultilineNonBlockStatement(NodeSourceElement.of(body)));
+                    addViolation(new ForebiddenMultilineNonBlockStatement(NodeElement.of(body)));
                 }
 
                 checkAllMultiline(whileStatement, body);

@@ -4,7 +4,7 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.stmt.Statement;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 /**
  * Base class for loop brace usage processors.
@@ -25,7 +25,7 @@ public abstract class LoopBracesProcessor extends JavaFileProcessor {
             final int statementStartLine = entireLoop.getEnd().get().line;
 
             if (statementStartLine != loopBody.getEnd().get().line) {
-                addViolation(new ForebiddenMultilineNonBlockStatement(NodeSourceElement.of(loopBody)));
+                addViolation(new ForebiddenMultilineNonBlockStatement(NodeElement.of(loopBody)));
             }
         }
     }

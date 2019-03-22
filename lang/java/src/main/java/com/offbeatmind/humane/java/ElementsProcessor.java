@@ -11,7 +11,7 @@ import java.util.List;
  */
 public abstract class ElementsProcessor extends JavaFileProcessor {
 
-    private NodeSourceElement<?> currentNode;
+    private NodeElement<?> currentNode;
 
     public ElementsProcessor(JavaFile javaFile) {
         super(javaFile);
@@ -27,21 +27,21 @@ public abstract class ElementsProcessor extends JavaFileProcessor {
     protected void initProcessing() {
     }
 
-    protected NodeSourceElement<?> getCurrentNode() {
+    protected NodeElement<?> getCurrentNode() {
         return currentNode;
     }
 
     protected final void processElements(List<SourceElement> elements) {
-        final NodeSourceElement<?> initialNode = currentNode;
+        final NodeElement<?> initialNode = currentNode;
 
         boolean firstInNode = true;
         
         for (SourceElement e : elements) {
             if (e.isToken()) {
-                processToken((TokenSourceElement) e, firstInNode);
+                processToken((TokenElement<?>) e, firstInNode);
                 firstInNode = false;
             } else if (e.isNode()) {
-                NodeSourceElement<?> node = (NodeSourceElement<?>) e;
+                NodeElement<?> node = (NodeElement<?>) e;
                 currentNode = node;
                 processNode(node);
                 currentNode = initialNode;
@@ -49,9 +49,9 @@ public abstract class ElementsProcessor extends JavaFileProcessor {
         }
     }
 
-    protected abstract void processToken(TokenSourceElement token, boolean firstInNode);
+    protected abstract void processToken(TokenElement<?> token, boolean firstInNode);
 
-    protected void processNode(NodeSourceElement<?> node) {
+    protected void processNode(NodeElement<?> node) {
         //System.out.println("BEGIN " + node.getNode().getClass().getName() + "#" + System.identityHashCode(node));
         processElements(node.getElements());
         //System.out.println("END " + node.getNode().getClass().getSimpleName() + "#" + System.identityHashCode(node));

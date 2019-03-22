@@ -13,7 +13,7 @@ import com.github.javaparser.ast.stmt.IfStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 import com.offbeatmind.humane.java.SourceElement;
 
 /**
@@ -79,7 +79,7 @@ public class EmptyStatementsProcessor extends JavaFileProcessor {
     }
 
     private <N extends Node> void checkEmpty(N node) {
-        final NodeSourceElement<N> element = NodeSourceElement.of(node);
+        final NodeElement<N> element = NodeElement.of(node);
         List<SourceElement> children = new LinkedList<>(element.getElements());
         SourceElement first = children.get(0);
         

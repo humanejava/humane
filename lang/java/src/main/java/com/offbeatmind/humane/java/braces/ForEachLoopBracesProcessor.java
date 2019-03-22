@@ -5,9 +5,9 @@ import java.util.function.Consumer;
 import com.github.javaparser.ast.stmt.ForEachStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import com.offbeatmind.humane.java.JavaFile;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 import com.offbeatmind.humane.java.SourceElement;
-import com.offbeatmind.humane.java.TokenSourceElement;
+import com.offbeatmind.humane.java.TokenElement;
 
 /**
  * Vaidates that multiline for-each ({@code for (...: ...)}) statements use braces.
@@ -30,12 +30,12 @@ public class ForEachLoopBracesProcessor extends LoopBracesProcessor {
                 final Statement body = forStatement.getBody();
                 if (body.isBlockStmt() || body.isEmptyStmt()) return;
 
-                NodeSourceElement<ForEachStmt> forElement = NodeSourceElement.of(forStatement);
-                TokenSourceElement loopControlEnd = null;
+                NodeElement<ForEachStmt> forElement = NodeElement.of(forStatement);
+                TokenElement<?> loopControlEnd = null;
 
                 for (SourceElement e : forElement.getElements()) {
                     if (e.isToken()) {
-                        TokenSourceElement token = (TokenSourceElement) e;
+                        final TokenElement<?> token = (TokenElement<?>) e;
 
                         if (")".contentEquals(token.getText())) {
                             loopControlEnd = token;
@@ -52,7 +52,7 @@ public class ForEachLoopBracesProcessor extends LoopBracesProcessor {
                 final int bodyEndLine = body.getEnd().get().line;
 
                 if (controlEndLine != bodyEndLine) {
-                    addViolation(new ForebiddenMultilineNonBlockStatement(NodeSourceElement.of(body)));
+                    addViolation(new ForebiddenMultilineNonBlockStatement(NodeElement.of(body)));
                 }
 
                 checkAllMultiline(forStatement, body);

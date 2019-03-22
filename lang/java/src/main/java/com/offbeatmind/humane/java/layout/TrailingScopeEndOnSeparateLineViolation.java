@@ -1,11 +1,11 @@
 package com.offbeatmind.humane.java.layout;
 
 import com.offbeatmind.humane.java.JavaViolation;
-import com.offbeatmind.humane.java.TokenSourceElement;
+import com.offbeatmind.humane.java.TokenElement;
 
 public class TrailingScopeEndOnSeparateLineViolation extends JavaViolation {
 
-    public TrailingScopeEndOnSeparateLineViolation(TokenSourceElement enderToken) {
+    public TrailingScopeEndOnSeparateLineViolation(TokenElement<?> enderToken) {
         super(enderToken);
     }
 

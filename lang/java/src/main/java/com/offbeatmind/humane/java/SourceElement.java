@@ -5,57 +5,57 @@ import java.util.Optional;
 import com.github.javaparser.Range;
 import com.github.javaparser.ast.Node;
 
-public interface SourceElement {
-    public default boolean isNode() {
+public abstract class SourceElement {
+    public boolean isNode() {
         return false;
     }
 
-    public default boolean isToken() {
+    public boolean isToken() {
         return false;
     }
 
-    public NodeSourceElement<?> getParent();
+    public abstract NodeElement<?> getParent();
 
-    public Optional<Range> getRange();
+    public abstract Optional<Range> getRange();
 
-    public default int getFirstLineNumber() {
+    public int getFirstLineNumber() {
         Optional<Range> range = getRange();
         if (!range.isPresent()) return -1;
         return range.get().begin.line;
     }
 
-    public default int getLastLineNumber() {
+    public int getLastLineNumber() {
         Optional<Range> range = getRange();
         if (!range.isPresent()) return -1;
         return range.get().end.line;
     }
 
-    public default int getFirstColumnNumber() {
+    public int getFirstColumnNumber() {
         Optional<Range> range = getRange();
         if (!range.isPresent()) return -1;
         return range.get().begin.column;
     }
 
-    public default boolean isMultiline() {
+    public boolean isMultiline() {
         return getRange().get().begin.line != getRange().get().end.line;
     }
 
-    public NodeSourceElement<?> asNodeElement();
+    public abstract NodeElement<?> asNodeSourceElement();
 
-    public TokenSourceElement asTokenElement();
+    public abstract TokenElement<?> asTokenElement();
 
-    public String getName();
+    public abstract String getName();
 
-    public boolean isComment();
+    public abstract boolean isComment();
 
-    public boolean isWhitespace();
+    public abstract boolean isWhitespace();
 
-    public boolean isWhitespaceOrComment();
+    public abstract boolean isWhitespaceOrComment();
 
-    public NodeSourceElement<? extends Node> getParagraphNode();
+    public abstract NodeElement<? extends Node> getParagraphNode();
 
-    public default int getParagraphIndentation() {
-        NodeSourceElement<? extends Node> paragraph = getParagraphNode();
+    public int getParagraphIndentation() {
+        NodeElement<? extends Node> paragraph = getParagraphNode();
         return (paragraph == null) ? 0 : paragraph.getBaseIndentation();
     }
 }

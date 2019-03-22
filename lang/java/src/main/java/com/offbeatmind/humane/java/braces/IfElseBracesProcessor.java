@@ -7,7 +7,7 @@ import com.github.javaparser.ast.stmt.IfStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 /**
  * Validates multiline if(-else) constructs use braces. 
@@ -37,7 +37,7 @@ public class IfElseBracesProcessor extends JavaFileProcessor {
                     Statement elseStatement = ifStatement.getElseStmt().orElse(null);
 
                     if (!(thenStatement.isBlockStmt() || thenStatement.isEmptyStmt())) {
-                        addViolation(new ForebiddenMultilineNonBlockStatement(NodeSourceElement.of(thenStatement)));
+                        addViolation(new ForebiddenMultilineNonBlockStatement(NodeElement.of(thenStatement)));
                     }
 
                     if (elseStatement != null) {
@@ -46,7 +46,7 @@ public class IfElseBracesProcessor extends JavaFileProcessor {
                                 || elseStatement.isEmptyStmt() || (elseStatement instanceof IfStmt)
                             )
                         ) {
-                            addViolation(new ForebiddenMultilineNonBlockStatement(NodeSourceElement.of(elseStatement)));
+                            addViolation(new ForebiddenMultilineNonBlockStatement(NodeElement.of(elseStatement)));
                         }
                     }
                 }

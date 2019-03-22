@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import com.github.javaparser.ast.ImportDeclaration;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 /**
  * Validates that star (and optionally static) imports aren't used.
@@ -22,10 +22,10 @@ public class ImportsProcessor extends JavaFileProcessor {
 
     @Override
     public void process(boolean fixErrors) {
-        javaFile.walkElements(ImportDeclaration.class, new Consumer<NodeSourceElement<ImportDeclaration>>() {
+        javaFile.walkElements(ImportDeclaration.class, new Consumer<NodeElement<ImportDeclaration>>() {
 
             @Override
-            public void accept(NodeSourceElement<ImportDeclaration> importDeclaration) {
+            public void accept(NodeElement<ImportDeclaration> importDeclaration) {
                 if (importDeclaration.getNode().isAsterisk()) {
                     addViolation(new StarImportViolation(importDeclaration));
                 }

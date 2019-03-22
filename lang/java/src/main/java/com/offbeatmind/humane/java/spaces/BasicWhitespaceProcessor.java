@@ -30,9 +30,9 @@ import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.type.TypeParameter;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 import com.offbeatmind.humane.java.SourceElement;
-import com.offbeatmind.humane.java.TokenSourceElement;
+import com.offbeatmind.humane.java.TokenElement;
 
 /**
  * Validates horizontal and vertical spacing.
@@ -177,7 +177,7 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
                     if (element.isToken()) {
                         processToken(element.asTokenElement());
                     } else if (element.isNode()) {
-                        processNode(element.asNodeElement());
+                        processNode(element.asNodeSourceElement());
                         oneSideWhitespaceRequirement = false;
                     }
                 }
@@ -224,26 +224,26 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
     }
 
     @SuppressWarnings("unchecked")
-    private void processNode(NodeSourceElement<?> nodeElement) {
-        Node node = nodeElement.getNode();
+    private void processNode(NodeElement<?> NodeSourceElement) {
+        Node node = NodeSourceElement.getNode();
 
         if (node instanceof Name) {
-            processName((NodeSourceElement<Name>) nodeElement);
+            processName((NodeElement<Name>) NodeSourceElement);
         } else {
-            processElements(nodeElement.getElements());
+            processElements(NodeSourceElement.getElements());
         }
     }
 
-    private void processName(NodeSourceElement<Name> nodeElement) {
+    private void processName(NodeElement<Name> NodeSourceElement) {
         // Do we want to allow whitespace around dots in the name for those that have to be wrapped?
-        String identifier = nodeElement.asNodeElement().getNode().getIdentifier();
+        String identifier = NodeSourceElement.asNodeSourceElement().getNode().getIdentifier();
 
         if (!IDENTIFIER_PATTERN.matcher(identifier).matches()) {
-            addViolation(new InappropriateIdentifierSpacingViolation(nodeElement));
+            addViolation(new InappropriateIdentifierSpacingViolation(NodeSourceElement));
         }
     }
 
-    private void processToken(TokenSourceElement tokenElement) {
+    private void processToken(TokenElement<?> tokenElement) {
         if (tokenElement.isKeyword()) {
             processKeyword(tokenElement);
             oneSideWhitespaceRequirement = false;
@@ -259,7 +259,7 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
         }
     }
 
-    private void processIdentifier(TokenSourceElement tokenElement) {
+    private void processIdentifier(TokenElement<?> tokenElement) {
         final Node parent = tokenElement.getParent().getNode();
 //        System.out.println("#####: " + tokenElement.getToken().getCategory() + ": " + tokenElement.getText() +
 //                " in " + parent.getParentNode().get().getClass().getSimpleName() +
@@ -287,7 +287,7 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
 
     }
 
-    private void processSeparator(TokenSourceElement tokenElement) {
+    private void processSeparator(TokenElement<?> tokenElement) {
         // Commas and semicolons normally require a space afterwards
         // Commas potentially have special cases, such as in generic type args.
 
@@ -325,12 +325,12 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
         }
     }
 
-    private boolean isUnspacedCommaAllowed(TokenSourceElement tokenElement) {
+    private boolean isUnspacedCommaAllowed(TokenElement<?> tokenElement) {
         if (!ALLOW_UNSPACED_COMMAS_IN_SINGLE_LETTER_TYPE_ARGS) return false;
 
         //System.out.println("$$$$$ Comma found: " + tokenElement.getRange().get().begin);
 
-        final NodeSourceElement<?> parentElement = tokenElement.getParent();
+        final NodeElement<?> parentElement = tokenElement.getParent();
         final Node parentNode = parentElement.getNode();
 
         if (parentNode instanceof NodeWithTypeArguments) {
@@ -429,7 +429,7 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
     }
 
     private boolean isUnspacedCommaAllowedInParameters(
-        NodeList<Parameter> parameters, TokenSourceElement tokenElement
+        NodeList<Parameter> parameters, TokenElement<?> tokenElement
     ) {
         for (Parameter parameter : parameters) {
             if (isUnspacedCommaAllowedInType(parameter.getType(), tokenElement)) return true;
@@ -437,7 +437,7 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
         return false;
     }
 
-    private boolean isUnspacedCommaAllowedInType(Type type, TokenSourceElement tokenElement) {
+    private boolean isUnspacedCommaAllowedInType(Type type, TokenElement<?> tokenElement) {
         if (type.getRange().get().contains(tokenElement.getRange().get())) {
             // Unfortunately, there seems to be no way to further drill this down
             // so now we must operate on strings.
@@ -465,7 +465,7 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
         return false;
     }
 
-    private boolean isUnspacedCommaAllowedInTypes(NodeList<? extends Type> typeArgs, TokenSourceElement tokenElement) {
+    private boolean isUnspacedCommaAllowedInTypes(NodeList<? extends Type> typeArgs, TokenElement<?> tokenElement) {
         for (Type type : typeArgs) {
             if (isUnspacedCommaAllowedInType(type, tokenElement)) return true;
         }
@@ -473,7 +473,7 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
     }
 
     private boolean isUnspacedCommaAllowedInTypeParams(
-        NodeList<TypeParameter> typeParameters, TokenSourceElement tokenElement
+        NodeList<TypeParameter> typeParameters, TokenElement<?> tokenElement
     ) {
         for (TypeParameter typeParameter : typeParameters) {
             if (isUnspacedCommaAllowedInTypes(typeParameter.getTypeBound(), tokenElement)) {
@@ -483,7 +483,7 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
         return false;
     }
 
-    private void processOperator(TokenSourceElement tokenElement) {
+    private void processOperator(TokenElement<?> tokenElement) {
         // Binary operators require spacing on both sides.
         // Unary operators must be preceded by whitespace and not followed by one.
         // Increment/decrement operators must have space on one side only.
@@ -572,7 +572,7 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
         }
     }
 
-    private void processKeyword(TokenSourceElement tokenElement) {
+    private void processKeyword(TokenElement<?> tokenElement) {
         final String keyword = tokenElement.getText();
 
         switch (keyword) {
@@ -647,7 +647,7 @@ public class BasicWhitespaceProcessor extends JavaFileProcessor {
         return (previousElement == null) || previousElement.isWhitespace();
     }
 
-    private void processOrdinaryToken(TokenSourceElement tokenElement) {
+    private void processOrdinaryToken(TokenElement<?> tokenElement) {
         // Nothing (yet) to assume or do that isn't addressed in the caller methods.
         whitespaceExpectation = WhitespaceExpectation.ANYTHING;
     }

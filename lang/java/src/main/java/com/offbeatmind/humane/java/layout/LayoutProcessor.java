@@ -18,9 +18,9 @@ import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.SwitchEntry;
 import com.offbeatmind.humane.java.ElementsProcessor;
 import com.offbeatmind.humane.java.JavaFile;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 import com.offbeatmind.humane.java.SourceElement;
-import com.offbeatmind.humane.java.TokenSourceElement;
+import com.offbeatmind.humane.java.TokenElement;
 
 /**
  * Validates basic layout - indentation, vertical separation, placement of braces and
@@ -43,7 +43,7 @@ public class LayoutProcessor extends ElementsProcessor {
     int currentLineIndentation = 0;
 
     private final TreeSet<Integer> startLinesOfScopesEnded = new TreeSet<>();
-    private final LinkedList<TokenSourceElement> violatingScopeEnderTokens = new LinkedList<>();
+    private final LinkedList<TokenElement<?>> violatingScopeEnderTokens = new LinkedList<>();
 
     public LayoutProcessor(JavaFile javaFile) {
         super(javaFile);
@@ -61,7 +61,7 @@ public class LayoutProcessor extends ElementsProcessor {
     }
 
     @Override
-    protected void processNode(NodeSourceElement<?> node) {
+    protected void processNode(NodeElement<?> node) {
         checkVerticalSeparation(node);
 
         if (node.getNode() instanceof SwitchEntry) {
@@ -76,7 +76,7 @@ public class LayoutProcessor extends ElementsProcessor {
         }
     }
 
-    private boolean isVerticallySignificant(NodeSourceElement<?> node) {
+    private boolean isVerticallySignificant(NodeElement<?> node) {
         final Node n = node.getNode();
 
         boolean significant =
@@ -99,40 +99,40 @@ public class LayoutProcessor extends ElementsProcessor {
         }
     }
 
-    private void checkVerticalSeparation(NodeSourceElement<?> node) {
-        NodeSourceElement<?> lastSignificant = null;
+    private void checkVerticalSeparation(NodeElement<?> node) {
+        NodeElement<?> lastSignificant = null;
         LinkedList<SourceElement> separators = new LinkedList<>();
 
         for (SourceElement e : node.getElements()) {
             if (e.isNode()) {
-                NodeSourceElement<?> nodeElement = e.asNodeElement();
+                NodeElement<?> NodeSourceElement = e.asNodeSourceElement();
 
-                if (isVerticallySignificant(nodeElement)) {
+                if (isVerticallySignificant(NodeSourceElement)) {
                     if (lastSignificant != null) {
-                        if (nodeElement.isMultiline() || lastSignificant.isMultiline()) {
+                        if (NodeSourceElement.isMultiline() || lastSignificant.isMultiline()) {
                             final int separation =
-                                nodeElement.getFirstLineNumber() - lastSignificant.getLastLineNumber() - 1;
+                                NodeSourceElement.getFirstLineNumber() - lastSignificant.getLastLineNumber() - 1;
 
                             if (separation < 0) {
-                                addViolation(new VerticalSeparationViolation(nodeElement, lastSignificant));
+                                addViolation(new VerticalSeparationViolation(NodeSourceElement, lastSignificant));
                             } else if (separation == 0) {
                                 // TODO Some reduced separation may be OK, e.g.fall-through switch-case or after end of a block
                                 if (
-                                    nodeElement.isNode() && 
-                                    (nodeElement.getNode() instanceof SwitchEntry) &&
+                                    NodeSourceElement.isNode() && 
+                                    (NodeSourceElement.getNode() instanceof SwitchEntry) &&
                                     lastSignificant.isNode() &&
                                     (lastSignificant.getNode() instanceof SwitchEntry)
                                 ) {
                                     final SwitchEntry lastEntry = (SwitchEntry)lastSignificant.getNode();
 
                                     if (!lastEntry.isEmpty()) {
-                                        addViolation(new VerticalSeparationViolation(nodeElement, lastSignificant));
+                                        addViolation(new VerticalSeparationViolation(NodeSourceElement, lastSignificant));
                                     }
                                 } else {
                                     SourceElement lastElement = lastSignificant;
     
                                     while ((lastElement != null) && lastElement.isNode()) {
-                                        lastElement = lastElement.asNodeElement().getLastElement();
+                                        lastElement = lastElement.asNodeSourceElement().getLastElement();
                                     }
     
                                     if (
@@ -143,14 +143,14 @@ public class LayoutProcessor extends ElementsProcessor {
                                     ) {
                                         // This may be OK. Warning?
                                     } else {
-                                        addViolation(new VerticalSeparationViolation(nodeElement, lastSignificant));
+                                        addViolation(new VerticalSeparationViolation(NodeSourceElement, lastSignificant));
                                     }
                                 }
                             }
                         }
                     }
                     separators.clear();
-                    lastSignificant = nodeElement;
+                    lastSignificant = NodeSourceElement;
                 }
             } else {
                 separators.add(e);
@@ -163,11 +163,11 @@ public class LayoutProcessor extends ElementsProcessor {
         return true;
     }
 
-    protected void processToken(final TokenSourceElement currentTokenElement, boolean firstInNode) {
+    protected void processToken(final TokenElement<?> currentTokenElement, boolean firstInNode) {
         final JavaToken currentJavaToken = currentTokenElement.getToken();
         final int currentTokenKind = currentJavaToken.getKind();
         final String currentTokenText = currentJavaToken.getText();
-        final NodeSourceElement<?> currentOwner = currentTokenElement.getParent();
+        final NodeElement<?> currentOwner = currentTokenElement.getParent();
 
         final int tokenLine = currentTokenElement.getFirstLineNumber();
 
@@ -195,7 +195,7 @@ public class LayoutProcessor extends ElementsProcessor {
 
                 // See if we should unindent first
                 if (currentTokenElement.isScopeEnder()) {
-                    TokenSourceElement startingToken = endBracedScope(currentTokenElement, true);
+                    TokenElement<?> startingToken = endBracedScope(currentTokenElement, true);
                     scopeEnded = true;
                     // Indentation must match the indentation of the LINE with the starting token
                     // Note that there could be additional open scopes from the same line.
@@ -212,7 +212,7 @@ public class LayoutProcessor extends ElementsProcessor {
                 }
 
                 // Check if additional, wrapping indentation is needed.
-                NodeSourceElement<? extends Node> paragraph = getCurrentNode().getParagraphNode();
+                NodeElement<? extends Node> paragraph = getCurrentNode().getParagraphNode();
                 
                 if ((paragraph != null) && (paragraph.getFirstLineNumber() < currentLineNumber)) {
                     if (currentTokenElement.isOneOf(")", "]", "}", "else", ">")) {
@@ -235,13 +235,13 @@ public class LayoutProcessor extends ElementsProcessor {
                     allowExtraIndentation = currentOwner.getNode() instanceof LambdaExpr;
                 } else if (isSwitchEntryStart) {
                     allowExtraIndentation = false;
-                } else if (scopeStack.peekFirst() instanceof SwitchEntry) {
+                } else if (scopeStack.peekFirst().isNode() && (scopeStack.peekFirst().asNodeSourceElement().is(SwitchEntry.class))) {
                     allowExtraIndentation = false;
                 } else {
                     final SourceElement currentScope = scopeStack.peekFirst();
 
                     if ((currentScope != null) && currentScope.isNode()) {
-                        if (((NodeSourceElement<?>) currentScope).getNode() instanceof SwitchEntry) {
+                        if (((NodeElement<?>) currentScope).getNode() instanceof SwitchEntry) {
                             allowExtraIndentation = false;
                         } else {
                             allowExtraIndentation = !currentTokenElement.isScopeEnder();
@@ -311,7 +311,7 @@ public class LayoutProcessor extends ElementsProcessor {
 
     void checkScopesEnded() {
         if (!violatingScopeEnderTokens.isEmpty()) {
-            for (TokenSourceElement t : violatingScopeEnderTokens) {
+            for (TokenElement<?> t : violatingScopeEnderTokens) {
                 addViolation(new ClosingMoreThanOneOtherStartLineViolation(t, startLinesOfScopesEnded));
             }
 //            throw new RuntimeException("Line " + currentLineNumber + " ends scopes starting in multiple prior lines: " + startLinesOfScopesEnded);
@@ -320,12 +320,12 @@ public class LayoutProcessor extends ElementsProcessor {
         violatingScopeEnderTokens.clear();
     }
 
-    void startBracedScope(final TokenSourceElement starterToken) {
+    void startBracedScope(final TokenElement<?> starterToken) {
         scopeStack.push(starterToken);
         //System.out.println("++++++++++++++ [-->#" + scopeStack.size() + "] " + starterToken.getText() + " of " + starterToken.getParent().getNode().getClass().getSimpleName() + "@" + starterToken.getParent().getRange().get() + " at " + starterToken.getRange().get());
     }
 
-    TokenSourceElement endBracedScope(final TokenSourceElement enderToken, final boolean firstInLine) {
+    TokenElement<?> endBracedScope(final TokenElement<?> enderToken, final boolean firstInLine) {
         //System.out.println("~~~~~~~~~~~~~~ [-->#" + scopeStack.size() + "] " + enderToken.getText() + " of " + enderToken.getParent().getNode().getClass().getSimpleName() + "@" + enderToken.getParent().getRange().get() + " at " + enderToken.getRange().get());
         final SourceElement starterElement = scopeStack.pop();
 
@@ -336,7 +336,7 @@ public class LayoutProcessor extends ElementsProcessor {
                     " ending a scope that started with a non-token at " + starterElement.getRange().get().begin
             );
         }
-        final TokenSourceElement starterToken = (TokenSourceElement) starterElement;
+        final TokenElement<?> starterToken = (TokenElement<?>) starterElement;
         //System.out.println("-------------- [-->#" + scopeStack.size() + "] " + starterToken.getText() + " of " + starterToken.getParent().getNode().getClass().getSimpleName() + "@" + starterToken.getParent().getRange().get() + " at " + starterToken.getRange().get());
         if (enderToken.getParent() != starterToken.getParent()) {
             throw new RuntimeException(

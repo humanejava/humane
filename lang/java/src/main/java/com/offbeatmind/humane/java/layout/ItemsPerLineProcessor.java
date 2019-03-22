@@ -14,7 +14,7 @@ import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.TryStmt;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 /**
  * Validates that there is at most one item per line at any one
@@ -70,8 +70,8 @@ public class ItemsPerLineProcessor extends JavaFileProcessor {
                         if (!exception) {
                             addViolation(
                                 new SingleItemPerLineViolation(
-                                    NodeSourceElement.of(child),
-                                    NodeSourceElement.of(preexistingNode)
+                                    NodeElement.of(child),
+                                    NodeElement.of(preexistingNode)
                                 )
                             );
                         }

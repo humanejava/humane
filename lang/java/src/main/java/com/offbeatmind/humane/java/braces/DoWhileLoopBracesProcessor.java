@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import com.github.javaparser.ast.stmt.DoStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import com.offbeatmind.humane.java.JavaFile;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 /**
  * Vaidates that multiline {@code do...while} statements use braces.
@@ -32,7 +32,7 @@ public class DoWhileLoopBracesProcessor extends LoopBracesProcessor {
                 final int conditionStartLine = doStatement.getCondition().getBegin().get().line;
 
                 if (doStartLine != conditionStartLine) {
-                    addViolation(new ForebiddenMultilineNonBlockStatement(NodeSourceElement.of(body)));
+                    addViolation(new ForebiddenMultilineNonBlockStatement(NodeElement.of(body)));
                 }
 
                 checkAllMultiline(doStatement, body);

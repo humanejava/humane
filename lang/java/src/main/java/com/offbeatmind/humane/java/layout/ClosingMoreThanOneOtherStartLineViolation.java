@@ -3,14 +3,14 @@ package com.offbeatmind.humane.java.layout;
 import java.util.TreeSet;
 
 import com.offbeatmind.humane.java.JavaViolation;
-import com.offbeatmind.humane.java.TokenSourceElement;
+import com.offbeatmind.humane.java.TokenElement;
 
 public class ClosingMoreThanOneOtherStartLineViolation extends JavaViolation {
 
     private final TreeSet<Integer> startLinesOfScopesEnded;
 
     public ClosingMoreThanOneOtherStartLineViolation(
-        TokenSourceElement enderToken, TreeSet<Integer> startLinesOfScopesEnded
+        TokenElement<?> enderToken, TreeSet<Integer> startLinesOfScopesEnded
     ) {
         super(enderToken);
 

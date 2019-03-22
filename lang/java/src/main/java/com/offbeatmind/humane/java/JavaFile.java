@@ -182,19 +182,20 @@ public class JavaFile extends SourceFile {
     /**
      * Initializes - constructs and orders the elements of code in order they appear in the source.
      */
-    private void organizeElements() {
+    private <N extends Node> void organizeElements() {
         for (JavaToken token : compilationUnit.getTokenRange().get()) {
             Range tokenRange = token.getRange().orElseThrow(
                 () -> new RuntimeException("Token without range: " + token)
             );
 
-            Node owner = findNodeForRange(compilationUnit, tokenRange);
+            @SuppressWarnings("unchecked")
+            final N owner = (N)findNodeForRange(compilationUnit, tokenRange);
 
             if (owner == null) {
                 throw new RuntimeException("Token without node owning it: " + token);
             }
-            NodeElement<?> ownerElement = NodeElement.of(owner);
-            ownerElement.addElement(new TokenElement(token, ownerElement));
+            NodeElement<N> ownerElement = NodeElement.of(owner);
+            ownerElement.addElement(new TokenElement<N>(token, ownerElement));
         }
     }
 
@@ -276,7 +277,7 @@ public class JavaFile extends SourceFile {
      *     
      * @see #walkNodes(Class, Consumer)
      */
-    public <T extends Node> void walkElements(Class<T> nodeType, Consumer<NodeSourceElement<T>> consumer) {
+    public <T extends Node> void walkElements(Class<T> nodeType, Consumer<NodeElement<T>> consumer) {
         walkNodes(nodeType, new Consumer<T>() {
 
             @Override

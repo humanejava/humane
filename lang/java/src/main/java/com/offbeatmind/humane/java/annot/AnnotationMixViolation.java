@@ -2,16 +2,16 @@ package com.offbeatmind.humane.java.annot;
 
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.offbeatmind.humane.java.JavaViolation;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 import com.offbeatmind.humane.java.SourceElement;
 
 public class AnnotationMixViolation extends JavaViolation {
 
-    private final NodeSourceElement<AnnotationExpr> preexistingAnnotation;
+    private final NodeElement<AnnotationExpr> preexistingAnnotation;
 
     public AnnotationMixViolation(
         SourceElement violatingElement,
-        NodeSourceElement<AnnotationExpr> preexistingAnnotation
+        NodeElement<AnnotationExpr> preexistingAnnotation
     ) {
         super(violatingElement);
         this.preexistingAnnotation = preexistingAnnotation;

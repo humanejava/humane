@@ -1,13 +1,13 @@
 package com.offbeatmind.humane.java.layout;
 
 import com.offbeatmind.humane.java.JavaViolation;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 public class VerticalSeparationViolation extends JavaViolation {
 
-    private final NodeSourceElement<?> previousNode;
+    private final NodeElement<?> previousNode;
 
-    protected VerticalSeparationViolation(NodeSourceElement<?> violatingNode, NodeSourceElement<?> previousNode) {
+    protected VerticalSeparationViolation(NodeElement<?> violatingNode, NodeElement<?> previousNode) {
         super(violatingNode);
         this.previousNode = previousNode;
     }

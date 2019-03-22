@@ -1,11 +1,11 @@
 package com.offbeatmind.humane.java.braces;
 
 import com.offbeatmind.humane.java.JavaViolation;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 public class ForebiddenMultilineNonBlockStatement extends JavaViolation {
 
-    protected ForebiddenMultilineNonBlockStatement(NodeSourceElement<?> violatingElement) {
+    protected ForebiddenMultilineNonBlockStatement(NodeElement<?> violatingElement) {
         super(violatingElement);
     }
 

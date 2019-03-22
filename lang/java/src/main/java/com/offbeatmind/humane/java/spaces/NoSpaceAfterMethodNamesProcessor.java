@@ -11,7 +11,7 @@ import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.stmt.ExplicitConstructorInvocationStmt;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 
 /**
  * Vaidates that there are no spaces between method names and their parameters.
@@ -38,29 +38,29 @@ public class NoSpaceAfterMethodNamesProcessor extends JavaFileProcessor {
     }
 
     private void checkMethodCalls() {
-        javaFile.walkElements(MethodCallExpr.class, new Consumer<NodeSourceElement<MethodCallExpr>>() {
+        javaFile.walkElements(MethodCallExpr.class, new Consumer<NodeElement<MethodCallExpr>>() {
             @Override
-            public void accept(NodeSourceElement<MethodCallExpr> element) {
+            public void accept(NodeElement<MethodCallExpr> element) {
                 checkMethodCall(element);
             }
         });
     }
 
-    private void checkMethodCall(NodeSourceElement<MethodCallExpr> element) {
+    private void checkMethodCall(NodeElement<MethodCallExpr> element) {
         // TODO Auto-generated method stub
 
     }
 
     private void checkObjectCreationExpressions() {
-        javaFile.walkElements(ObjectCreationExpr.class, new Consumer<NodeSourceElement<ObjectCreationExpr>>() {
+        javaFile.walkElements(ObjectCreationExpr.class, new Consumer<NodeElement<ObjectCreationExpr>>() {
             @Override
-            public void accept(NodeSourceElement<ObjectCreationExpr> element) {
+            public void accept(NodeElement<ObjectCreationExpr> element) {
                 checkObjectCreationExpression(element);
             }
         });
     }
 
-    private void checkObjectCreationExpression(NodeSourceElement<ObjectCreationExpr> element) {
+    private void checkObjectCreationExpression(NodeElement<ObjectCreationExpr> element) {
         // TODO Auto-generated method stub
 
     }
@@ -69,72 +69,72 @@ public class NoSpaceAfterMethodNamesProcessor extends JavaFileProcessor {
         javaFile
             .walkElements(
                 ExplicitConstructorInvocationStmt.class,
-                new Consumer<NodeSourceElement<ExplicitConstructorInvocationStmt>>() {
+                new Consumer<NodeElement<ExplicitConstructorInvocationStmt>>() {
                     @Override
-                    public void accept(NodeSourceElement<ExplicitConstructorInvocationStmt> element) {
+                    public void accept(NodeElement<ExplicitConstructorInvocationStmt> element) {
                         checkExplicitConstructorCall(element);
                     }
                 }
             );
     }
 
-    private void checkExplicitConstructorCall(NodeSourceElement<ExplicitConstructorInvocationStmt> element) {
+    private void checkExplicitConstructorCall(NodeElement<ExplicitConstructorInvocationStmt> element) {
         // TODO Auto-generated method stub
 
     }
 
     private void checkConstructorDeclarations() {
-        javaFile.walkElements(ConstructorDeclaration.class, new Consumer<NodeSourceElement<ConstructorDeclaration>>() {
+        javaFile.walkElements(ConstructorDeclaration.class, new Consumer<NodeElement<ConstructorDeclaration>>() {
             @Override
-            public void accept(NodeSourceElement<ConstructorDeclaration> element) {
+            public void accept(NodeElement<ConstructorDeclaration> element) {
                 checkConstructorDeclaration(element);
             }
         });
     }
 
-    private void checkConstructorDeclaration(NodeSourceElement<ConstructorDeclaration> element) {
+    private void checkConstructorDeclaration(NodeElement<ConstructorDeclaration> element) {
         // TODO Auto-generated method stub
 
     }
 
     private void checkMethodDeclarations() {
-        javaFile.walkElements(MethodDeclaration.class, new Consumer<NodeSourceElement<MethodDeclaration>>() {
+        javaFile.walkElements(MethodDeclaration.class, new Consumer<NodeElement<MethodDeclaration>>() {
             @Override
-            public void accept(NodeSourceElement<MethodDeclaration> element) {
+            public void accept(NodeElement<MethodDeclaration> element) {
                 checkMethodDeclaration(element);
             }
         });
     }
 
-    private void checkMethodDeclaration(NodeSourceElement<MethodDeclaration> element) {
+    private void checkMethodDeclaration(NodeElement<MethodDeclaration> element) {
         // TODO Auto-generated method stub
 
     }
 
     private void checkArrayCreationExpressions() {
-        javaFile.walkElements(ArrayCreationExpr.class, new Consumer<NodeSourceElement<ArrayCreationExpr>>() {
+        javaFile.walkElements(ArrayCreationExpr.class, new Consumer<NodeElement<ArrayCreationExpr>>() {
             @Override
-            public void accept(NodeSourceElement<ArrayCreationExpr> element) {
+            public void accept(NodeElement<ArrayCreationExpr> element) {
                 checkArrayCreationExpression(element);
             }
         });
     }
 
-    private void checkArrayCreationExpression(NodeSourceElement<ArrayCreationExpr> element) {
+    private void checkArrayCreationExpression(NodeElement<ArrayCreationExpr> element) {
         // TODO Auto-generated method stub
 
     }
 
     private void checkArrayAccessExpressions() {
-        javaFile.walkElements(ArrayAccessExpr.class, new Consumer<NodeSourceElement<ArrayAccessExpr>>() {
+        javaFile.walkElements(ArrayAccessExpr.class, new Consumer<NodeElement<ArrayAccessExpr>>() {
             @Override
-            public void accept(NodeSourceElement<ArrayAccessExpr> element) {
+            public void accept(NodeElement<ArrayAccessExpr> element) {
                 checkArrayAccessExpression(element);
             }
         });
     }
 
-    private void checkArrayAccessExpression(NodeSourceElement<ArrayAccessExpr> element) {
+    private void checkArrayAccessExpression(NodeElement<ArrayAccessExpr> element) {
         // TODO Auto-generated method stub
 
     }

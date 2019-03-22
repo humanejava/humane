@@ -11,7 +11,7 @@ import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
-import com.offbeatmind.humane.java.NodeSourceElement;
+import com.offbeatmind.humane.java.NodeElement;
 import com.offbeatmind.humane.java.SourceElement;
 
 /**
@@ -34,7 +34,7 @@ public class AnnotationLayoutProcessor extends JavaFileProcessor {
     }
 
     private void checkMaxOneAnnotationPerLine(
-        @SuppressWarnings("rawtypes") NodeSourceElement<? extends NodeWithAnnotations> e
+        @SuppressWarnings("rawtypes") NodeElement<? extends NodeWithAnnotations> e
     ) {
         @SuppressWarnings("unchecked")
         final NodeList<AnnotationExpr> annotations = e.getNode().getAnnotations();
@@ -50,8 +50,8 @@ public class AnnotationLayoutProcessor extends JavaFileProcessor {
                 if (preexistingAnnotation != null) {
                     addViolation(
                         new SingleAnnotationPerLineViolation(
-                            NodeSourceElement.of(annotation),
-                            NodeSourceElement.of(preexistingAnnotation)
+                            NodeElement.of(annotation),
+                            NodeElement.of(preexistingAnnotation)
                         )
                     );
                 } else {
@@ -60,7 +60,7 @@ public class AnnotationLayoutProcessor extends JavaFileProcessor {
             }
         }
 
-        final NodeSourceElement<?> parent = e.getParent();
+        final NodeElement<?> parent = e.getParent();
         
         for (SourceElement s : parent.getElements()) {
             if ((s != e) & !s.isComment() && !s.isWhitespace()) {
@@ -73,7 +73,7 @@ public class AnnotationLayoutProcessor extends JavaFileProcessor {
                         addViolation(
                             new AnnotationMixViolation(
                                 s,
-                                NodeSourceElement.of(preexistingAnnotation)
+                                NodeElement.of(preexistingAnnotation)
                             )
                         );
                     }
