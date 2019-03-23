@@ -1,5 +1,6 @@
 package com.offbeatmind.humane.java.specialchars;
 
+import com.github.javaparser.ast.expr.CharLiteralExpr;
 import com.github.javaparser.ast.expr.StringLiteralExpr;
 import com.offbeatmind.humane.java.JavaFile;
 import com.offbeatmind.humane.java.JavaFileProcessor;
@@ -20,12 +21,34 @@ public class SpecialCharsInTextLiteralsProcessor extends JavaFileProcessor {
     @Override
     public void process(final boolean fixErrors) {
         javaFile.walkNodes(StringLiteralExpr.class, this::processString);
+        javaFile.walkNodes(CharLiteralExpr.class, this::processChar);
+    }
+    
+    protected final void processChar(CharLiteralExpr charLiteral) {
+        String original = charLiteral.getValue(); // TODO Check if this is as specified or parsed?
+        if (original == null) return;
+        
+        String correct = correctLiteral(original);
+        
+        if (!original.contentEquals(correct)) {
+            addViolation(new SpecialCharsInTextLiteralViolation(NodeElement.of(charLiteral), correct));
+            //if (fixErrors) stringLiteral.setValue(correct);
+        }
     }
 
     protected final void processString(StringLiteralExpr stringLiteral) {
         String original = stringLiteral.getValue(); // TODO Check if this is as specified or parsed?
         if (original == null) return;
         
+        String correct = correctLiteral(original);
+        
+        if (!original.contentEquals(correct)) {
+            addViolation(new SpecialCharsInTextLiteralViolation(NodeElement.of(stringLiteral), correct));
+            //if (fixErrors) stringLiteral.setValue(correct);
+        }
+    }
+
+    private String correctLiteral(String original) {
         String correct = original
             .replace("\t", "\\t")
             .replace("\b", "\\b")
@@ -38,10 +61,6 @@ public class SpecialCharsInTextLiteralsProcessor extends JavaFileProcessor {
             while (unicode.length() < 4) unicode = "0" + unicode;
             correct = correct.replace(String.valueOf(ch), "\\u" + unicode);
         }
-        
-        if (!original.contentEquals(correct)) {
-            addViolation(new SpecialCharsInTextLiteralViolation(NodeElement.of(stringLiteral), correct));
-            //if (fixErrors) stringLiteral.setValue(correct);
-        }
+        return correct;
     }
 }
