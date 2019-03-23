@@ -13,8 +13,6 @@ import com.offbeatmind.humane.java.NodeElement;
  */
 public class SpecialCharsInTextLiteralsProcessor extends JavaFileProcessor {
     
-    public static final String check = "\u0000";
-    
     public SpecialCharsInTextLiteralsProcessor(JavaFile javaFile) {
         super(javaFile);
     }
