@@ -18,6 +18,7 @@ import com.offbeatmind.humane.java.imports.ImportsProcessor;
 import com.offbeatmind.humane.java.layout.ItemsPerLineProcessor;
 import com.offbeatmind.humane.java.multidecl.MultipleDeclarationsProcessor;
 import com.offbeatmind.humane.java.spaces.BasicWhitespaceProcessor;
+import com.offbeatmind.humane.java.specialchars.SpecialCharsInTextLiteralsProcessor;
 
 /**
  * Java implementation of of {@link LanguageProcessor}.
@@ -43,6 +44,7 @@ public class JavaLanguageProcessor extends LanguageProcessor<JavaSourceTree, Jav
     
                 @Override
                 public void accept(JavaFile f) {
+                    (new SpecialCharsInTextLiteralsProcessor(f)).process(fixErrors);
                     (new IfElseBracesProcessor(f)).process(fixErrors);
                     (new WhileLoopBracesChecker(f)).process(fixErrors);
                     (new DoWhileLoopBracesProcessor(f)).process(fixErrors);
